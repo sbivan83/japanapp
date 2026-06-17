@@ -281,20 +281,14 @@
 
 var TRIP = {
   nombre:"Nipones al Abordaje 2026",
-  saludo:"Iván",
+  saludo:"",
   inicio:"2026-06-28",
   fin:"2026-07-14",
   crucero:"Celebrity Millennium",
   grupoTotal:80,
-  viajeros:[
-    {n:"Iván",    ap:"Sánchez Blánquez",  ida:"Coche 7 · 2B", vta:"Coche 5 · 15C"},
-    {n:"Rubio",   ap:"Sánchez Cuéllar",   ida:"Coche 7 · 2A", vta:"Coche 5 · 15D"},
-    {n:"Araceli", ap:"Blánquez Blánquez", ida:"Coche 7 · 3A", vta:"Coche 5 · 16C"},
-    {n:"Enriqueta",ap:"Pastor Lázaro",    ida:"Coche 7 · 3B", vta:"Coche 5 · 16D"},
-    {n:"Cristóbal",ap:"Martín Sánchez",   ida:"Coche 7 · 1A", vta:"Coche 5 · 14D"}
-  ],
+  viajeros:[],
   notas:[
-    "🛂 Pasaportes gestionados para el check-in del grupo. Llevadlos siempre a mano (lo recuerda Jesús).",
+    "🛂 Pasaportes gestionados para el check-in del grupo. Llevadlos siempre a mano.",
     "☀️ Julio en Japón es muy caluroso y húmedo: gorra, gafas de sol, protección solar y beber mucha agua.",
     "🚢 Crucero Celebrity Millennium · grupo de ~80 personas."
   ]
@@ -576,10 +570,10 @@ var EMERGENCY = {
   pendiente:"Pendiente de añadir: certificado individual del seguro (nº de certificado, nombres de los asegurados y fechas exactas de cobertura del viaje)."
  },
  queHacer:[
-  {e:"🛂", t:"Pierdes el pasaporte", d:"Avisa a Jesús y a la Embajada de España en Tokio. Lleva siempre una copia/foto del pasaporte aparte."},
-  {e:"📱", t:"Pierdes el móvil", d:"Usa otro móvil del grupo para localizarlo. Apunta antes los teléfonos clave (Jesús, seguro)."},
+  {e:"🛂", t:"Pierdes el pasaporte", d:"Avisa al organizador del grupo y a la Embajada de España en Tokio. Lleva siempre una copia/foto del pasaporte aparte."},
+  {e:"📱", t:"Pierdes el móvil", d:"Usa otro móvil del grupo para localizarlo. Apunta antes los teléfonos clave (organizador, seguro)."},
   {e:"🧳", t:"Pierdes la maleta", d:"Notifícalo en el mostrador de la aerolínea o del barco antes de 24 h. El seguro cubre demora >12 h y pérdida."},
-  {e:"🚢", t:"Pierdes el barco o un vuelo", d:"Avisa de inmediato a Jesús. El crucero y los vuelos tienen horarios estrictos: vuelve siempre con margen."}
+  {e:"🚢", t:"Pierdes el barco o un vuelo", d:"Avisa de inmediato al organizador. El crucero y los vuelos tienen horarios estrictos: vuelve siempre con margen."}
  ]
 };
 
@@ -1102,11 +1096,8 @@ function vMas(){
     +qbtn("#/documentos","📄","Docs")
     +qbtn("#/sos","🆘","SOS","sos")
     +'</div>';
-  out+='<div class="sec-title">Viajeros</div><div class="card">';
-  for(var i=0;i<TRIP.viajeros.length;i++){var p=TRIP.viajeros[i];
-    out+='<div class="info"><div class="l">'+(i===0?"⭐ ":"")+esc(p.n)+'</div><div class="v muted">'+esc(p.ap)+'</div></div>';
-  }
-  out+='<div class="note" style="margin-top:8px">Grupo de '+TRIP.grupoTotal+' personas · Crucero '+esc(TRIP.crucero)+'</div></div>';
+  out+='<div class="sec-title">El grupo</div><div class="card">';
+  out+='<div class="note" style="margin-top:0">Grupo de ~'+TRIP.grupoTotal+' personas · Crucero '+esc(TRIP.crucero)+'</div></div>';
   out+='<div class="spacer"></div>';
   return out;
 }
@@ -1116,7 +1107,7 @@ function vDocumentos(){
   var docs=[
    {e:"🛡️",t:"Seguro InterMundial · Condiciones",s:"Multiasistencia Plus · Asistencia 910 848 794",ok:true},
    {e:"📄",t:"Certificado individual del seguro",s:"Nombres y fechas de cobertura",ok:false},
-   {e:"🚢",t:"Documentación del crucero",s:"La gestiona el organizador (Jesús)",ok:false},
+   {e:"🚢",t:"Documentación del crucero",s:"La gestiona el organizador",ok:false},
    {e:"✈️",t:"Tarjetas de embarque Qatar",s:"Las gestiona el organizador",ok:false},
    {e:"🏨",t:"Reserva Hotel Villa Fontaine (Tokio)",s:"La gestiona el organizador",ok:false}
   ];
