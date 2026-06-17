@@ -53,6 +53,16 @@
   .sec-title{font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
     color:var(--muted); margin:22px 2px 4px}
 
+  .itin-sec{background:var(--card); border:1px solid var(--line); border-radius:var(--r);
+    box-shadow:var(--shadow); margin:14px 0; overflow:hidden}
+  .itin-sec summary{padding:14px 16px; font-weight:700; font-size:15px; cursor:pointer; list-style:none;
+    display:flex; align-items:center; gap:10px; color:var(--indigo)}
+  .itin-sec summary::-webkit-details-marker{display:none}
+  .itin-sec summary .chev{margin-left:auto; transition:transform .15s; color:var(--muted)}
+  .itin-sec[open] summary .chev{transform:rotate(90deg)}
+  .itin-sec .sbody{padding:0 16px 4px}
+  .itin-sec .sbody .card{margin:8px 0}
+
   /* ---------- Pills / chips ---------- */
   .pill{display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:700;
     padding:4px 10px; border-radius:999px; letter-spacing:.03em}
@@ -322,9 +332,7 @@
 
 <nav class="nav" id="nav">
   <a href="#/inicio"   data-base="inicio"><span class="e"><svg class="ico"><use href="#i-home"></use></svg></span>Inicio</a>
-  <a href="#/itinerario" data-base="itinerario"><span class="e"><svg class="ico"><use href="#i-map"></use></svg></span>Días</a>
-  <a href="#/vuelos"   data-base="vuelos"><span class="e"><svg class="ico"><use href="#i-plane"></use></svg></span>Viaje</a>
-  <a href="#/hoteles"  data-base="hoteles"><span class="e"><svg class="ico"><use href="#i-hotel"></use></svg></span>Hoteles</a>
+  <a href="#/itinerario" data-base="itinerario"><span class="e"><svg class="ico"><use href="#i-map"></use></svg></span>Itinerario</a>
   <a href="#/conversor" data-base="conversor"><span class="e"><svg class="ico"><use href="#i-yen"></use></svg></span>Conversor</a>
   <a href="#/mas"      data-base="mas"><span class="e"><svg class="ico"><use href="#i-more"></use></svg></span>Más</a>
 </nav>
@@ -893,16 +901,16 @@ function vInicio(){
   // accesos rápidos
   out+='<div class="sec-title">Accesos rápidos</div>';
   out+='<div class="qgrid">'
-    +qbtn("#/vuelos","✈️","Viaje")
-    +qbtn("#/hoteles","🏨","Hoteles")
+    +qbtn("#/itinerario","🗺️","Itinerario")
     +qbtn("#/frases","🗣️","Frases")
+    +qbtn("#/utiles","🎒","Checklist")
     +qbtn("#/sos","🆘","SOS","sos")
     +'</div>';
   out+='<div class="qgrid" style="margin-top:10px">'
     +qbtn("#/lugares","📸","Lugares")
     +qbtn("#/mapa","🗺️","Mapa")
-    +qbtn("#/utiles","🎒","Checklist")
     +qbtn("#/conversor","💴","Conversor")
+    +qbtn("#/documentos","📄","Docs")
     +'</div>';
 
   out+='<div class="sec-title">Recordatorios</div><div class="card">';
@@ -914,7 +922,9 @@ function qbtn(href,e,t,cls){return'<a class="qbtn '+(cls||"")+'" href="'+href+'"
 
 /* ---------------- RENDER: ITINERARIO ---------------- */
 function vItinerario(){
-  var out='<div class="sec-title">'+DAYS.length+' jornadas · 28 jun → 14 jul 2026</div>';
+  var out='<details class="itin-sec"><summary>'+ic("✈")+' Vuelos y transporte<span class="chev">›</span></summary><div class="sbody">'+vVuelosBody()+'</div></details>';
+  out+='<details class="itin-sec"><summary>'+ic("🏨")+' Hoteles<span class="chev">›</span></summary><div class="sbody">'+vHotelesBody()+'</div></details>';
+  out+='<div class="sec-title">'+DAYS.length+' jornadas · 28 jun → 14 jul 2026</div>';
   for(var i=0;i<DAYS.length;i++){
     var d=DAYS[i], st=statusDia(d.fecha);
     var done=store("done",{}); var marcado=done[d.id]||st==="done";
@@ -965,8 +975,9 @@ function vDia(id){
 }
 
 /* ---------------- RENDER: VUELOS / TRANSPORTE ---------------- */
-function vVuelos(){
-  var out='<div class="note" style="margin:14px 0 4px">✈️ Vuelos y barco: <b>localizador y equipaje los gestiona el organizador</b> (grupo de 80). Aquí tienes todos los horarios.</div>';
+function vVuelos(){ var out=vVuelosBody(); out+='<div class="spacer"></div>'; return out; }
+function vVuelosBody(){
+  var out='<div class="note" style="margin:14px 0 4px">'+ic("✈")+' Vuelos y barco: <b>localizador y equipaje los gestiona el organizador</b> (grupo de 80). Aquí tienes todos los horarios.</div>';
   out+='<div class="sec-title">Vuelos · Qatar Airways</div>';
   for(var i=0;i<FLIGHTS.length;i++){
     var f=FLIGHTS[i];
@@ -985,7 +996,8 @@ function vVuelos(){
 }
 
 /* ---------------- RENDER: HOTELES ---------------- */
-function vHoteles(){
+function vHoteles(){ var out=vHotelesBody(); out+='<div class="spacer"></div>'; return out; }
+function vHotelesBody(){
   var out='<div class="spacer" style="height:6px"></div>';
   for(var i=0;i<HOTELS.length;i++){
     var h=HOTELS[i];
