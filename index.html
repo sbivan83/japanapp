@@ -364,13 +364,14 @@ var TRIP = {
 
 // id: "previo" | "ida" | "1".."15" | "regreso"
 var DAYS = [
- {id:"ida", lbl:"Viaje de ida", fecha:"2026-06-28", ciudad:"Madrid → Doha", tipo:"vuelo", base:"En ruta (vuelo nocturno)", baseIc:"✈️",
+ {id:"ida", lbl:"Viaje de ida", fecha:"2026-06-28", ciudad:"Madrid → Tokio (vía Doha)", tipo:"vuelo", base:"En ruta (vuelo nocturno, escala en Doha)", baseIc:"✈️",
   bloques:[
-   {h:"15:45", t:"Vuelo QR 150 · Madrid-Barajas → Doha", e:"✈️", d:"Qatar Airways. Salida de Barajas (T4S) 15:45 · llegada a Doha (DOH) 23:30.", p:"Aeropuerto Madrid Barajas T4"}
+   {h:"15:45", t:"Vuelo QR 150 · Madrid-Barajas → Doha", e:"✈️", d:"Qatar Airways. Salida de Barajas (T4S) 15:45 · llegada a Doha (DOH) 23:30.", p:"Aeropuerto Madrid Barajas T4"},
+   {h:"02:50", t:"Trasbordo: vuelo QR 806 · Doha → Tokio Narita", e:"✈️", d:"Qatar Airways. Salida de Doha (DOH) 02:50 (ya 29 jun) · llegada a Narita (NRT) 19:10. Casi 3 horas de escala en el aeropuerto de Doha.", p:"Aeropuerto Narita Tokyo"}
   ]},
  {id:"1", lbl:"Día 1", fecha:"2026-06-29", ciudad:"Llegada a Tokio", tipo:"llegada", base:"Hotel Villa Fontaine Tokyo-Kayabacho", baseIc:"🏨",
   bloques:[
-   {h:"19:10", t:"Llegada a Narita · vuelo QR 806", e:"✈️", d:"Encuentro con el asistente en la puerta de llegadas (lleva un cartel identificativo).", p:"Aeropuerto Narita NRT", cu:"Narita está a ~60 km del centro de Tokio: el traslado puede durar más de una hora."},
+   {h:"19:10", t:"Llegada a Narita · vuelo QR 806 (desde Doha)", e:"✈️", d:"Encuentro con el asistente en la puerta de llegadas (lleva un cartel identificativo).", p:"Aeropuerto Narita NRT", cu:"Narita está a ~60 km del centro de Tokio: el traslado puede durar más de una hora."},
    {h:"Traslado", t:"Al hotel en autocar privado", e:"🚌", d:"Sube al autobús según pases el control de aduanas, da igual tu grupo (A o B). El primer bus sale al llegar a 40 pasajeros."},
    {h:"Noche", t:"Check-in · Villa Fontaine Tokyo", e:"🏨", d:"☀️ El verano japonés es muy caluroso y húmedo: hidrátate y lleva sombrero, gafas de sol y protector solar.", p:"Hotel Villa Fontaine Tokyo Kayabacho"}
   ]},
@@ -474,10 +475,11 @@ var DAYS = [
    {h:"13:30~15:00", t:"Tiempo libre y almuerzo en la calle Komachi", e:"🍡", p:"Komachi Street Kamakura", cu:"Aquí triunfan el helado y el senbei (galleta de arroz) tostado al momento."},
    {h:"15:30~17:00", t:"Templo Kotokuin · Gran Buda", e:"🗿", p:"Kotokuin Great Buddha Kamakura", cu:"El Buda de bronce de 93 toneladas está hueco: por unas monedas puedes entrar en su interior."},
    {h:"19:30", t:"Llegada al Aeropuerto de Narita", e:"🛫", p:"Aeropuerto Narita NRT"},
-   {h:"22:25", t:"Salida · vuelo QR 807", e:"✈️", d:"Qatar Airways."}
+   {h:"22:25", t:"Salida · vuelo QR 807 · Narita → Doha", e:"✈️", d:"Qatar Airways. Trasbordo en Doha para conectar con el vuelo de regreso a Madrid."}
   ]},
- {id:"regreso", lbl:"Regreso", fecha:"2026-07-14", ciudad:"Doha → Madrid (Barajas)", tipo:"vuelo", base:"Llegada a Madrid-Barajas · fin del viaje", baseIc:"✈️",
+ {id:"regreso", lbl:"Regreso", fecha:"2026-07-14", ciudad:"Tokio → Madrid (vía Doha)", tipo:"vuelo", base:"Llegada a Madrid-Barajas · fin del viaje", baseIc:"✈️",
   bloques:[
+   {h:"Madrugada", t:"Trasbordo en Doha", e:"✈️", d:"Llegada del vuelo QR 807 desde Narita y espera para la conexión con el vuelo de Madrid."},
    {h:"08:05", t:"Vuelo QR 149 · Doha → Madrid-Barajas", e:"✈️", d:"Qatar Airways. Llegada a Madrid (MAD) 14:15. ¡Fin del viaje!", p:"Aeropuerto Madrid Barajas T4"}
   ]}
 ];
