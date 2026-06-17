@@ -91,8 +91,11 @@
   .today-card .top .lbl{font-size:12px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; opacity:.9}
   .today-card .top .ttl{font-size:21px; font-weight:800; margin-top:2px}
   .today-card .body{padding:14px 16px}
+  .ico{width:1em; height:1em; display:inline-block; vertical-align:-.15em; stroke:currentColor; fill:none;
+    stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round}
+  .ico.solid{fill:currentColor; stroke:none}
   .kv{display:flex; gap:10px; align-items:flex-start; margin:7px 0; font-size:15px}
-  .kv .ic{font-size:18px; width:24px; text-align:center; flex:none}
+  .kv .ic{font-size:18px; width:24px; text-align:center; flex:none; color:var(--indigo)}
   .kv .tx{flex:1}
   .kv .tx b{font-weight:700}
 
@@ -257,19 +260,75 @@
 </style>
 </head>
 <body>
+<svg style="display:none" aria-hidden="true">
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></symbol>
+<symbol id="i-plane" viewBox="0 0 24 24" class="solid"><path d="M2 16l20-7-20-7v6l14 1-14 1z" fill="currentColor"/></symbol>
+<symbol id="i-train" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 13h14M9 17l-2 3M15 17l2 3"/><circle cx="9" cy="9" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="9" r="1" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-bus" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="10" rx="2"/><path d="M3 12h18"/><circle cx="7" cy="18" r="1.5" fill="currentColor" stroke="none"/><circle cx="17" cy="18" r="1.5" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-hotel" viewBox="0 0 24 24"><path d="M3 19v-7a2 2 0 012-2h6a2 2 0 012 2"/><path d="M3 19h18"/><path d="M13 13h6a2 2 0 012 2v4"/><circle cx="7" cy="9" r="1.5"/></symbol>
+<symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.6" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-yen" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 8l4 6 4-6M12 14v4M9 13h6M9 16h6"/></symbol>
+<symbol id="i-sos" viewBox="0 0 24 24"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+<symbol id="i-passport" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M9 16h6"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="currentColor" stroke="none"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.5 4.5l2 2M17.5 17.5l2 2M4.5 19.5l2-2M17.5 6.5l2-2"/></symbol>
+<symbol id="i-ship" viewBox="0 0 24 24"><path d="M4 16l1.5 4h13L20 16"/><path d="M6 16V8h6l4 4"/><path d="M9 4v4"/></symbol>
+<symbol id="i-food" viewBox="0 0 24 24"><path d="M4 12a8 8 0 0016 0z"/><path d="M3 12h18"/><path d="M17 4l2 16M19 4l1 6"/></symbol>
+<symbol id="i-tree" viewBox="0 0 24 24"><path d="M12 2l5 8h-3l4 6h-4v6h-4v-6H6l4-6H7z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-bridge" viewBox="0 0 24 24"><path d="M3 16c3-4 15-4 18 0"/><path d="M5 16v3M9 13v6M15 13v6M19 16v3"/></symbol>
+<symbol id="i-bag" viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="12" rx="2"/><path d="M9 8V6a3 3 0 016 0v2"/></symbol>
+<symbol id="i-tower" viewBox="0 0 24 24"><path d="M12 2l3 5h-2l3 5h-2l3 5H7l3-5H8l3-5H9z" fill="currentColor" stroke="none"/><path d="M9 22h6"/></symbol>
+<symbol id="i-game" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 11v3M6.5 12.5h3"/><circle cx="16" cy="11" r="1" fill="currentColor" stroke="none"/><circle cx="18" cy="13" r="1" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-luggage" viewBox="0 0 24 24"><rect x="5" y="7" width="14" height="13" rx="2"/><path d="M9 7V5a3 3 0 016 0v2"/><path d="M9 11v5M15 11v5"/></symbol>
+<symbol id="i-anchor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><path d="M12 7v13M7 14a5 5 0 0010 0M5 14h2M17 14h2"/></symbol>
+<symbol id="i-torii" viewBox="0 0 24 24"><path d="M3 7h18M5 7v13M19 7v13M4 11h16"/></symbol>
+<symbol id="i-lantern" viewBox="0 0 24 24"><path d="M8 4h8M9 4v2a3 3 0 006 0V4M7 9a5 5 0 0010 0H7zM7 9v8a5 5 0 0010 0V9M12 17v3"/></symbol>
+<symbol id="i-castle" viewBox="0 0 24 24" class="solid"><path d="M4 21V10h3V8h2v2h2V6h2v4h2V8h2v2h3v11z" fill="currentColor"/></symbol>
+<symbol id="i-dove" viewBox="0 0 24 24" class="solid"><path d="M3 14c4-6 9-7 12-4-2 0-3 1-3 2 3 0 6 1 7 4-3-1-5-1-7 0-2 1-5 1-9-2z" fill="currentColor"/></symbol>
+<symbol id="i-church" viewBox="0 0 24 24"><path d="M12 2v4M10 4h4M7 22V11l5-4 5 4v11z"/><path d="M10 22v-6h4v6"/></symbol>
+<symbol id="i-island" viewBox="0 0 24 24"><path d="M3 19c4-5 14-5 18 0"/><path d="M9 19V9l3-4 3 4v10"/></symbol>
+<symbol id="i-mountain" viewBox="0 0 24 24"><path d="M3 19l6-10 4 6 2-3 6 7z"/></symbol>
+<symbol id="i-fish" viewBox="0 0 24 24"><path d="M3 12s4-5 10-5 8 5 8 5-2 5-8 5-10-5-10-5z"/><circle cx="16" cy="11" r=".7" fill="currentColor" stroke="none"/><path d="M3 12l-2-3v6z"/></symbol>
+<symbol id="i-traffic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="16" rx="2"/><circle cx="12" cy="6" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="10" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="14" r="1.3" fill="currentColor" stroke="none"/><path d="M12 18v3"/></symbol>
+<symbol id="i-building" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="17" rx="1"/><path d="M4 10h16M4 15h16M9 4v17M15 4v17"/></symbol>
+<symbol id="i-statue" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.5"/><path d="M7 21l1-9h8l1 9M9 12V8h6v4"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 6-4 9-8 11-4-2-8-5-8-11V5z"/></symbol>
+<symbol id="i-badge" viewBox="0 0 24 24"><path d="M12 2l7 3v6a8 8 0 01-7 8 8 8 0 01-7-8V5z"/><path d="M9.5 12l1.8 1.8L15 10"/></symbol>
+<symbol id="i-medical" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 7v10M7 12h10"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></symbol>
+<symbol id="i-wave" viewBox="0 0 24 24"><path d="M7 12c2-4 4 4 6 0s4 4 6 0"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></symbol>
+<symbol id="i-party" viewBox="0 0 24 24"><path d="M4 20l3-10 13 4z"/><path d="M14 4l1 2M18 3v2M20 7h2"/></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3M9 21h6"/></symbol>
+<symbol id="i-camera" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7l1.5-3h5L16 7"/><circle cx="12" cy="13" r="4"/></symbol>
+<symbol id="i-backpack" viewBox="0 0 24 24"><path d="M7 8a5 5 0 0110 0v12H7z"/><path d="M9 8V6a3 3 0 016 0v2M9 13h6M9 17h6"/></symbol>
+<symbol id="i-warning" viewBox="0 0 24 24"><path d="M12 3l9 16H3z"/><path d="M12 9v5M12 16h.01"/></symbol>
+<symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 00-3 11c.6.5 1 1.2 1 2h4c0-.8.4-1.5 1-2a6 6 0 00-3-11z"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-7.5 7-12a7 7 0 10-14 0c0 4.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></symbol>
+<symbol id="i-call" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 2A12 12 0 0014 17.5l2-2.5 5 2v4a2 2 0 01-2 2A17 17 0 013 6a2 2 0 012-2z"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+<symbol id="i-web" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></symbol>
+<symbol id="i-landmark" viewBox="0 0 24 24"><path d="M4 21h16M5 21V10M9 21V10M15 21V10M19 21V10M3 10l9-6 9 6"/></symbol>
+<symbol id="i-sparkle" viewBox="0 0 24 24" class="solid"><path d="M12 2l1.5 6L20 9l-6.5 1L12 16l-1.5-6L4 9l6.5-1z" fill="currentColor"/></symbol>
+<symbol id="i-timer" viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M9 2h6M12 13l3-3M11 5h2"/></symbol>
+<symbol id="i-speaker" viewBox="0 0 24 24"><path d="M3 9v6h4l5 4V5L7 9z"/><path d="M16 9a4 4 0 010 6M19 6a8 8 0 010 12"/></symbol>
+<symbol id="i-stethoscope" viewBox="0 0 24 24"><path d="M5 3v6a4 4 0 008 0V3M9 13v3a5 5 0 0010 0v-2"/><circle cx="19" cy="12" r="1.5"/></symbol>
+<symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h7l3 3v15H7z"/><path d="M14 3v3h3"/><path d="M9 12h6M9 16h6"/></symbol>
+<symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 3v18"/><path d="M5 4h13l-3 4 3 4H5"/></symbol>
+</svg>
 <div class="appbar"><button class="back" id="backBtn" style="display:none">‹</button>
   <h1 id="barTitle">Inicio</h1><span class="jp" id="barJp">ホーム</span></div>
 <main id="app" class="wrap"></main>
 
 <nav class="nav" id="nav">
-  <a href="#/inicio"   data-base="inicio"><span class="e">🏠</span>Inicio</a>
-  <a href="#/itinerario" data-base="itinerario"><span class="e">🗺️</span>Días</a>
-  <a href="#/vuelos"   data-base="vuelos"><span class="e">✈️</span>Viaje</a>
-  <a href="#/hoteles"  data-base="hoteles"><span class="e">🏨</span>Hoteles</a>
-  <a href="#/conversor" data-base="conversor"><span class="e">💴</span>¥/€</a>
-  <a href="#/mas"      data-base="mas"><span class="e">⋯</span>Más</a>
+  <a href="#/inicio"   data-base="inicio"><span class="e"><svg class="ico"><use href="#i-home"></use></svg></span>Inicio</a>
+  <a href="#/itinerario" data-base="itinerario"><span class="e"><svg class="ico"><use href="#i-map"></use></svg></span>Días</a>
+  <a href="#/vuelos"   data-base="vuelos"><span class="e"><svg class="ico"><use href="#i-plane"></use></svg></span>Viaje</a>
+  <a href="#/hoteles"  data-base="hoteles"><span class="e"><svg class="ico"><use href="#i-hotel"></use></svg></span>Hoteles</a>
+  <a href="#/conversor" data-base="conversor"><span class="e"><svg class="ico"><use href="#i-yen"></use></svg></span>¥/€</a>
+  <a href="#/mas"      data-base="mas"><span class="e"><svg class="ico"><use href="#i-more"></use></svg></span>Más</a>
 </nav>
-<a class="fab" href="#/sos"><span class="e">🆘</span>SOS</a>
+<a class="fab" href="#/sos"><span class="e"><svg class="ico"><use href="#i-sos"></use></svg></span>SOS</a>
 
 <script>window.IMG={"akihabara":"img/akihabara.jpg","chikurinji":"img/chikurinji.jpg","chiran":"img/chiran.jpg","chiransamurai":"img/chiransamurai.jpg","daibutsu":"img/daibutsu.jpg","dejima":"img/dejima.jpg","dotonbori":"img/dotonbori.jpg","ginza":"img/ginza.jpg","glover":"img/glover.jpg","hachimangu":"img/hachimangu.jpg","hamarikyu":"img/hamarikyu.jpg","harajuku":"img/harajuku.jpg","hirome":"img/hirome.jpg","imperial":"img/imperial.jpg","kinkakuji":"img/kinkakuji.jpg","kiyomizu":"img/kiyomizu.jpg","kochicastle":"img/kochicastle.jpg","komachi":"img/komachi.jpg","kunozan":"img/kunozan.jpg","makino":"img/makino.jpg","meiji":"img/meiji.jpg","miho":"img/miho.jpg","nakamise":"img/nakamise.jpg","nijo":"img/nijo.jpg","osakacastle":"img/osakacastle.jpg","peacepark":"img/peacepark.jpg","redbrick":"img/redbrick.jpg","s_busan":"img/s_busan.jpg","s_deck":"img/s_deck.jpg","s_flight":"img/s_flight.jpg","s_fuji":"img/s_fuji.jpg","s_kagoshima":"img/s_kagoshima.jpg","s_kamakura":"img/s_kamakura.jpg","s_kochi":"img/s_kochi.jpg","s_kyoto":"img/s_kyoto.jpg","s_nagasaki":"img/s_nagasaki.jpg","s_osaka":"img/s_osaka.jpg","s_pool":"img/s_pool.jpg","s_ship":"img/s_ship.jpg","s_ship2":"img/s_ship2.jpg","s_tokyo":"img/s_tokyo.jpg","sannenzaka":"img/sannenzaka.jpg","senganen":"img/senganen.jpg","sengen":"img/sengen.jpg","sensoji":"img/sensoji.jpg","shibuya":"img/shibuya.jpg","shimizumarket":"img/shimizumarket.jpg","shinchi":"img/shinchi.jpg","tenmonkan":"img/tenmonkan.jpg","tokyotower":"img/tokyotower.jpg","tsukiji":"img/tsukiji.jpg","umeda":"img/umeda.jpg"};</script>
 <script>
@@ -289,9 +348,9 @@ var TRIP = {
   grupoTotal:80,
   viajeros:[],
   notas:[
-    "🛂 Pasaportes gestionados para el check-in del grupo. Llevadlos siempre a mano.",
-    "☀️ Julio en Japón es muy caluroso y húmedo: gorra, gafas de sol, protección solar y beber mucha agua.",
-    "🚢 Crucero Celebrity Millennium · grupo de ~80 personas."
+    ["🛂","Pasaportes gestionados para el check-in del grupo. Llevadlos siempre a mano."],
+    ["☀️","Julio en Japón es muy caluroso y húmedo: gorra, gafas de sol, protección solar y beber mucha agua."],
+    ["🚢","Crucero Celebrity Millennium · grupo de ~80 personas."]
   ]
 };
 
@@ -327,7 +386,7 @@ var DAYS = [
    {h:"16:30", t:"¡El Celebrity Millennium zarpa!", e:"🚢", d:"Desde la Terminal Internacional de Cruceros de Tokio."}
   ]},
  {id:"4", lbl:"Día 4", fecha:"2026-07-02", ciudad:"Día de navegación", tipo:"mar", base:"Celebrity Millennium", baseIc:"🚢",
-  bloques:[{h:"Todo el día", t:"Día a bordo (sin servicio de autobús)", e:"🛳️", d:"Disfruta de las instalaciones del barco."}]},
+  bloques:[{h:"Todo el día y toda la noche", t:"Navegación", e:"🛳️", d:"El barco navega sin parar; disfruta de las instalaciones a bordo."}]},
  {id:"5", lbl:"Día 5", fecha:"2026-07-03", ciudad:"Kioto", tipo:"visita", base:"Celebrity Millennium", baseIc:"🚢",
   bloques:[
    {h:"08:00", t:"Llegada a Osaka · Terminal Tempozan", e:"⚓", p:"Tempozan Osaka", cu:"La terminal está junto a la gran noria Tempozan, una de las más altas de Japón."},
@@ -356,7 +415,7 @@ var DAYS = [
    {h:"17:00", t:"Salida del puerto de Kochi", e:"🚢"}
   ]},
  {id:"8", lbl:"Día 8", fecha:"2026-07-06", ciudad:"Día de navegación", tipo:"mar", base:"Celebrity Millennium", baseIc:"🚢",
-  bloques:[{h:"Todo el día", t:"Día a bordo (sin servicio de autobús)", e:"🛳️"}]},
+  bloques:[{h:"Todo el día y toda la noche", t:"Navegación", e:"🛳️", d:"El barco navega sin parar; disfruta de las instalaciones a bordo."}]},
  {id:"9", lbl:"Día 9", fecha:"2026-07-07", ciudad:"Busan (Corea del Sur)", tipo:"libre", base:"Celebrity Millennium", baseIc:"🚢",
   bloques:[{h:"Día libre", t:"Busan a tu aire (sin servicio de autobús)", e:"🇰🇷", d:"Ideas: Gamcheon Culture Village, mercado de Jagalchi, playa de Haeundae.", p:"Busan Port"}]},
  {id:"10", lbl:"Día 10", fecha:"2026-07-08", ciudad:"Nagasaki", tipo:"visita", base:"Celebrity Millennium", baseIc:"🚢",
@@ -378,7 +437,7 @@ var DAYS = [
    {h:"17:00", t:"Salida del puerto", e:"🚢"}
   ]},
  {id:"12", lbl:"Día 12", fecha:"2026-07-10", ciudad:"Día de navegación", tipo:"mar", base:"Celebrity Millennium", baseIc:"🚢",
-  bloques:[{h:"Todo el día", t:"Día a bordo (sin servicio de autobús)", e:"🛳️"}]},
+  bloques:[{h:"Todo el día y toda la noche", t:"Navegación", e:"🛳️", d:"El barco navega sin parar; disfruta de las instalaciones a bordo."}]},
  {id:"13", lbl:"Día 13", fecha:"2026-07-11", ciudad:"Shimizu", tipo:"visita", base:"Celebrity Millennium", baseIc:"🚢",
   warn:"Tras bajar del teleférico hay ~100 escalones de piedra hasta el santuario Kunozan. Lleva calzado cómodo; quien no quiera subir puede quedarse en Yume Terrace. No hay reembolso por el teleférico ni la entrada.",
   bloques:[
@@ -401,6 +460,7 @@ var DAYS = [
   ]},
  {id:"15", lbl:"Día 15", fecha:"2026-07-13", ciudad:"Yokohama, Kamakura y vuelo", tipo:"visita", base:"En ruta (vuelo nocturno)", baseIc:"✈️",
   bloques:[
+   {h:"Por la mañana", t:"Desembarco en el puerto de Yokohama", e:"🚢", d:"Hora exacta a confirmar por el organizador; suele hacerse equipaje fuera del camarote la noche antes."},
    {h:"10:00~11:30", t:"Yokohama: Almacén de Ladrillo Rojo y Parque Yamashita", e:"🧱", p:"Yokohama Red Brick Warehouse", cu:"Estos almacenes de ladrillo de hace un siglo sobrevivieron al gran terremoto de 1923."},
    {h:"12:30~13:30", t:"Santuario Tsurugaoka Hachimangu (Kamakura)", e:"⛩️", p:"Tsurugaoka Hachimangu Kamakura", cu:"Fue el centro espiritual del primer gobierno samurái de Japón, en el siglo XII."},
    {h:"13:30~15:00", t:"Tiempo libre y almuerzo en la calle Komachi", e:"🍡", p:"Komachi Street Kamakura", cu:"Aquí triunfan el helado y el senbei (galleta de arroz) tostado al momento."},
@@ -603,6 +663,17 @@ function fechaCorta(iso){var d=parse(iso);return d.getDate()+" "+MON[d.getMonth(
 function diasEntre(a,b){return Math.round((parse(b)-parse(a))/86400000);}
 function statusDia(iso){var t=todayISO();if(iso<t)return"done";if(iso===t)return"hoy";return"next";}
 function esc(s){return(""+s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+var EMOJI_ICON={"✈":"plane","🚆":"train","🚉":"train","🚌":"bus","🏠":"home","🗺":"map","🏨":"hotel",
+ "💴":"yen","🆘":"sos","🛂":"passport","☀":"sun","🚢":"ship","🛳":"ship","🍽":"food","🍣":"food","🍢":"food",
+ "🍤":"food","🥢":"food","🍡":"food","🍴":"food","🍜":"food","🌳":"tree","🌲":"tree","🌿":"tree","🌉":"bridge",
+ "🛍":"bag","🗼":"tower","🎮":"game","🧳":"luggage","⚓":"anchor","⛩":"torii","🏮":"lantern","🏯":"castle",
+ "🕊":"dove","⛪":"church","🏝":"island","🌋":"mountain","🗻":"mountain","🐟":"fish","🚦":"traffic",
+ "🧱":"building","🗿":"statue","🛫":"plane","🛡":"shield","🚓":"badge","🚑":"medical","📱":"phone","👋":"wave",
+ "🕘":"clock","🎉":"party","🗣":"mic","📸":"camera","🎒":"backpack","⚠":"warning","💡":"bulb","📍":"pin",
+ "📞":"call","✉":"mail","🌐":"web","🏛":"landmark","✨":"sparkle","⏱":"timer","🔊":"speaker","🩺":"stethoscope",
+ "📄":"doc","🇪🇸":"flag","🇰🇷":"flag","🇯🇵":"flag","⋯":"more"};
+function ic(e){if(!e)return"";var k=(""+e).replace(/️/g,"");var n=EMOJI_ICON[k];
+ return n?'<svg class="ico"><use href="#i-'+n+'"></use></svg>':esc(e);}
 function maps(q){return"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q);}
 function tel(n){return"tel:"+(""+n).replace(/\s/g,"");}
 
@@ -720,7 +791,7 @@ var DAYINFO={
  "1":{dato:"Narita está a ~60 km del centro de Tokio; el traslado puede durar más de una hora.",comer:"Para llegar con energía: onigiri y bebidas de un konbini (7-Eleven, Lawson, Family Mart)."},
  "2":{dato:"Tokio es la mayor área metropolitana del mundo: unos 37 millones de personas.",comer:"Sushi de desayuno en Tsukiji y, de postre, un dulce en Ginza."},
  "3":{dato:"El Celebrity Millennium mide unos 294 m y lleva más de 2.000 pasajeros."},
- "4":{dato:"En los días de navegación el barco viaja de noche para amanecer en el siguiente puerto."},
+ "4":{dato:"En los días de navegación el barco no para: navega día y noche sin tocar puerto, a unos 35 km/h."},
  "5":{dato:"Kioto fue capital de Japón durante más de 1.000 años y conserva 17 sitios Patrimonio de la Humanidad.",comer:"Yudofu (tofu hervido) o un matcha auténtico en una casa de té."},
  "6":{dato:"A Osaka la llaman 'la cocina de Japón'; de aquí viene el dicho 'kuidaore' (arruinarse comiendo).",comer:"Takoyaki, okonomiyaki y kushikatsu en Dotonbori."},
  "7":{dato:"Kochi es cuna del héroe samurái Sakamoto Ryoma y famosa por el bonito.",comer:"Katsuo no tataki (bonito flameado con paja) en el Mercado Hirome."},
@@ -795,18 +866,18 @@ function vInicio(){
     out+=sceneBanner(dayScene(hoy),"sm","Hoy · "+fechaLarga(hoy.fecha),hoy.lbl+" · "+hoy.ciudad,'<div class="ov-tl"><span class="pill hoy">● HOY</span></div>');
     out+='<div class="pad">';
     var b0=hoy.bloques[0];
-    if(b0)out+='<div class="kv"><span class="ic">'+(b0.e||"🕘")+'</span><span class="tx"><b>'+esc(b0.h)+'</b> · '+esc(b0.t)+'</span></div>';
-    out+='<div class="kv"><span class="ic">'+hoy.baseIc+'</span><span class="tx">Noche: '+esc(hoy.base)+'</span></div>';
+    if(b0)out+='<div class="kv"><span class="ic">'+ic(b0.e||"🕘")+'</span><span class="tx"><b>'+esc(b0.h)+'</b> · '+esc(b0.t)+'</span></div>';
+    out+='<div class="kv"><span class="ic">'+ic(hoy.baseIc)+'</span><span class="tx">Noche: '+esc(hoy.base)+'</span></div>';
     out+='<a class="btn solid" href="#/dia/'+hoy.id+'" style="margin-top:10px">Ver el día completo →</a></div>';
   } else if(antes){
     var n=diasEntre(t,TRIP.inicio);
     out+=sceneBanner("s_fuji","sm","Cuenta atrás","¡Faltan "+n+" días!");
-    out+='<div class="pad"><div class="kv"><span class="ic">🛫</span><span class="tx">El viaje empieza el <b>'+fechaLarga(TRIP.inicio)+'</b></span></div>'
-       +'<div class="kv"><span class="ic">✈️</span><span class="tx">Primer paso: vuelo QR 150 Barajas → Doha, 15:45</span></div>'
+    out+='<div class="pad"><div class="kv"><span class="ic">'+ic("🛫")+'</span><span class="tx">El viaje empieza el <b>'+fechaLarga(TRIP.inicio)+'</b></span></div>'
+       +'<div class="kv"><span class="ic">'+ic("✈️")+'</span><span class="tx">Primer paso: vuelo QR 150 Barajas → Doha, 15:45</span></div>'
        +'<a class="btn solid" href="#/dia/ida" style="margin-top:10px">Ver el plan del primer día →</a></div>';
   } else if(despues){
     out+=sceneBanner("s_home","sm","Viaje completado","¡Bienvenido a casa! 🎉");
-    out+='<div class="pad"><div class="kv"><span class="ic">🇯🇵</span><span class="tx">Esperamos que disfrutarais de Japón. おかえりなさい (okaerinasai).</span></div></div>';
+    out+='<div class="pad"><div class="kv"><span class="ic">'+ic("🇯🇵")+'</span><span class="tx">Esperamos que disfrutarais de Japón. おかえりなさい (okaerinasai).</span></div></div>';
   }
   out+='</div>';
 
@@ -834,11 +905,11 @@ function vInicio(){
     +'</div>';
 
   out+='<div class="sec-title">Recordatorios</div><div class="card">';
-  for(var k=0;k<TRIP.notas.length;k++)out+='<div class="kv"><span class="ic"></span><span class="tx">'+esc(TRIP.notas[k])+'</span></div>';
+  for(var k=0;k<TRIP.notas.length;k++)out+='<div class="kv"><span class="ic">'+ic(TRIP.notas[k][0])+'</span><span class="tx">'+esc(TRIP.notas[k][1])+'</span></div>';
   out+='</div><div class="spacer"></div>';
   return out;
 }
-function qbtn(href,e,t,cls){return'<a class="qbtn '+(cls||"")+'" href="'+href+'"><span class="e">'+e+'</span><span class="t">'+t+'</span></a>';}
+function qbtn(href,e,t,cls){return'<a class="qbtn '+(cls||"")+'" href="'+href+'"><span class="e">'+ic(e)+'</span><span class="t">'+t+'</span></a>';}
 
 /* ---------------- RENDER: ITINERARIO ---------------- */
 function vItinerario(){
@@ -864,14 +935,14 @@ function vDia(id){
     +sceneBanner(dayScene(d),"lg",d.lbl+" · "+fechaLarga(d.fecha),d.ciudad, st==="hoy"?'<div class="ov-tr"><span class="pill hoy">● HOY</span></div>':"")
     +'<div class="pad">';
   if(d.warn)out+='<div class="note" style="margin-top:0">⚠️ <b>Modificado:</b> '+esc(d.warn)+'</div>';
-  out+='<div class="base-line" style="margin-bottom:0">'+d.baseIc+' Noche: '+esc(d.base)+'</div></div></div>';
+  out+='<div class="base-line" style="margin-bottom:0">'+ic(d.baseIc)+' Noche: '+esc(d.base)+'</div></div></div>';
 
   out+='<div class="card"><div class="tl">';
   for(var i=0;i<d.bloques.length;i++){
     var b=d.bloques[i];
     out+='<div class="tl-item">'
       +'<div class="tl-time">'+esc(b.h)+'</div>'
-      +'<div class="tl-ttl"><span class="e">'+(b.e||"•")+'</span>'+esc(b.t)+'</div>'
+      +'<div class="tl-ttl"><span class="e">'+ic(b.e||"📍")+'</span>'+esc(b.t)+'</div>'
       +(b.d?'<div class="tl-desc">'+esc(b.d)+'</div>':'')
       +(b.cu?'<div class="tl-cur">💡 '+esc(b.cu)+'</div>':'')
       +(b.p?'<a class="tl-link" target="_blank" rel="noopener" href="'+maps(b.p)+'">📍 Abrir en Maps</a>':'')
@@ -881,8 +952,8 @@ function vDia(id){
 
   // curiosidad + gastronomía
   var di=DAYINFO[d.id]||{};
-  if(di.dato)out+='<div class="card" style="background:#fff8ef;border-color:#f0dcb8"><div class="kv"><span class="ic">💡</span><span class="tx"><b>¿Sabías que…?</b><br>'+esc(di.dato)+'</span></div></div>';
-  if(di.comer)out+='<div class="card" style="background:var(--green-soft);border-color:#bfe6cd"><div class="kv"><span class="ic">🍴</span><span class="tx"><b>Para probar</b><br>'+esc(di.comer)+'</span></div></div>';
+  if(di.dato)out+='<div class="card" style="background:#fff8ef;border-color:#f0dcb8"><div class="kv"><span class="ic">'+ic("💡")+'</span><span class="tx"><b>¿Sabías que…?</b><br>'+esc(di.dato)+'</span></div></div>';
+  if(di.comer)out+='<div class="card" style="background:var(--green-soft);border-color:#bfe6cd"><div class="kv"><span class="ic">'+ic("🍴")+'</span><span class="tx"><b>Para probar</b><br>'+esc(di.comer)+'</span></div></div>';
 
   // marcar completado
   out+='<div class="card chk-toggle" data-done="'+d.id+'" style="cursor:pointer">'
@@ -959,7 +1030,7 @@ function vLugares(){
       +'<p style="margin:2px 0;font-size:14px" class="muted">'+esc(p.por)+'</p>'
       +'<div class="info" style="border:0;padding:6px 0 2px"><div class="l">⏱️ Tiempo</div><div class="v">'+esc(p.t)+'</div></div>'
       +'<div class="note" style="margin-top:6px">💡 <b>Consejo:</b> '+esc(p.con)+'</div>'
-      +'<div style="font-size:13px;margin-top:6px">✨ <i>'+esc(p.dato)+'</i></div>'
+      +'<div style="font-size:13px;margin-top:6px">'+ic("✨")+' <i>'+esc(p.dato)+'</i></div>'
       +'<a class="btn ghost" target="_blank" rel="noopener" href="'+maps(p.n+" "+p.c)+'" style="margin-top:10px">📍 Abrir en Maps</a>'
       +'</div></div>';
   }
@@ -993,7 +1064,7 @@ function vMapa(){
   for(var i=0;i<pts.length;i++){var p=pts[i];
     var show = mapFiltro==="Todo" || (mapFiltro==="Favoritos"? (p.id&&fav.indexOf(p.id)>=0) : p.g===mapFiltro);
     if(!show)continue; n++;
-    out+='<div class="map-pt"><span class="e">'+p.e+'</span>'
+    out+='<div class="map-pt"><span class="e">'+ic(p.e)+'</span>'
       +'<div class="m"><div class="t">'+esc(p.n)+'</div><div class="c">'+esc(p.c)+' · '+p.g+'</div></div>'
       +'<a class="open" target="_blank" rel="noopener" href="'+maps(p.q)+'">📍 Maps</a></div>';
   }
@@ -1022,9 +1093,9 @@ function vFrases(){
 /* ---------------- RENDER: SOS ---------------- */
 function vSos(){
   var s=EMERGENCY.seguro;
-  var out='<div class="sos-hero" style="margin-top:14px"><div class="e">🆘</div><h2>Ayuda y emergencias</h2><p>Toca para llamar directamente</p></div>';
+  var out='<div class="sos-hero" style="margin-top:14px"><div class="e">'+ic("🆘")+'</div><h2>Ayuda y emergencias</h2><p>Toca para llamar directamente</p></div>';
   for(var i=0;i<EMERGENCY.sosCalls.length;i++){var c=EMERGENCY.sosCalls[i];
-    out+='<div class="call-card"><span class="e">'+c.e+'</span>'
+    out+='<div class="call-card"><span class="e">'+ic(c.e)+'</span>'
       +'<div class="info2"><div class="t">'+esc(c.t)+'</div><div class="s">'+esc(c.s)+' · '+esc(c.tel)+'</div></div>'
       +'<a class="go" href="'+tel(c.tel)+'">📞</a></div>';
   }
@@ -1043,7 +1114,7 @@ function vSos(){
   out+='</div>';
   out+='<div class="sec-title">Qué hacer si…</div>';
   for(var m=0;m<EMERGENCY.queHacer.length;m++){var q=EMERGENCY.queHacer[m];
-    out+='<div class="card"><div class="kv"><span class="ic">'+q.e+'</span><span class="tx"><b>'+esc(q.t)+'</b><br><span class="muted small">'+esc(q.d)+'</span></span></div></div>';
+    out+='<div class="card"><div class="kv"><span class="ic">'+ic(q.e)+'</span><span class="tx"><b>'+esc(q.t)+'</b><br><span class="muted small">'+esc(q.d)+'</span></span></div></div>';
   }
   out+='<div class="spacer"></div>';
   return out;
@@ -1110,7 +1181,7 @@ function vDocumentos(){
   ];
   var out='<div class="note" style="margin:14px 0 6px">📄 Lista de documentos del viaje. Para incrustar un PDF (p. ej. el seguro) y verlo sin internet, pásamelo y lo integro en el archivo.</div><div class="card">';
   for(var i=0;i<docs.length;i++){var d=docs[i];
-    out+='<div class="map-pt"><span class="e">'+d.e+'</span><div class="m"><div class="t">'+esc(d.t)+'</div><div class="c">'+esc(d.s)+'</div></div>'
+    out+='<div class="map-pt"><span class="e">'+ic(d.e)+'</span><div class="m"><div class="t">'+esc(d.t)+'</div><div class="c">'+esc(d.s)+'</div></div>'
       +'<span class="pill '+(d.ok?"done":"warn")+'">'+(d.ok?"✓ Tengo":"Pendiente")+'</span></div>';
   }
   out+='</div><div class="spacer"></div>';
