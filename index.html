@@ -908,11 +908,10 @@ function vInicio(){
     +qbtn("#/utiles","🎒","Checklist")
     +qbtn("#/sos","🆘","SOS","sos")
     +'</div>';
-  out+='<div class="qgrid" style="margin-top:10px">'
+  out+='<div class="qgrid three" style="margin-top:10px">'
     +qbtn("#/lugares","📸","Lugares")
     +qbtn("#/mapa","🗺️","Mapa")
     +qbtn("#/conversor","💴","Conversor")
-    +qbtn("#/documentos","📄","Docs")
     +'</div>';
 
   out+='<div class="sec-title">Recordatorios</div><div class="card">';
@@ -1176,30 +1175,11 @@ function vMas(){
     +qbtn("#/utiles","🎒","Checklist")
     +'</div><div class="qgrid three" style="margin-top:10px">'
     +qbtn("#/conversor","💴","Conversor")
-    +qbtn("#/documentos","📄","Docs")
     +qbtn("#/sos","🆘","SOS","sos")
     +'</div>';
   out+='<div class="sec-title">El grupo</div><div class="card">';
   out+='<div class="note" style="margin-top:0">Grupo de ~'+TRIP.grupoTotal+' personas · Crucero '+esc(TRIP.crucero)+'</div></div>';
   out+='<div class="spacer"></div>';
-  return out;
-}
-
-/* ---------------- RENDER: DOCUMENTOS ---------------- */
-function vDocumentos(){
-  var docs=[
-   {e:"🛡️",t:"Seguro InterMundial · Condiciones",s:"Multiasistencia Plus · Asistencia 910 848 794",ok:true},
-   {e:"📄",t:"Certificado individual del seguro",s:"Nombres y fechas de cobertura",ok:false},
-   {e:"🚢",t:"Documentación del crucero",s:"La gestiona el organizador",ok:false},
-   {e:"✈️",t:"Tarjetas de embarque Qatar",s:"Las gestiona el organizador",ok:false},
-   {e:"🏨",t:"Reserva Hotel Villa Fontaine (Tokio)",s:"La gestiona el organizador",ok:false}
-  ];
-  var out='<div class="note" style="margin:14px 0 6px">📄 Lista de documentos del viaje. Para incrustar un PDF (p. ej. el seguro) y verlo sin internet, pásamelo y lo integro en el archivo.</div><div class="card">';
-  for(var i=0;i<docs.length;i++){var d=docs[i];
-    out+='<div class="map-pt"><span class="e">'+ic(d.e)+'</span><div class="m"><div class="t">'+esc(d.t)+'</div><div class="c">'+esc(d.s)+'</div></div>'
-      +'<span class="pill '+(d.ok?"done":"warn")+'">'+(d.ok?"✓ Tengo":"Pendiente")+'</span></div>';
-  }
-  out+='</div><div class="spacer"></div>';
   return out;
 }
 
@@ -1209,7 +1189,7 @@ var META={
  vuelos:["Viaje y transporte","移動"], hoteles:["Hoteles","ホテル"], lugares:["Lugares","名所"],
  mapa:["Mapa","地図"], frases:["Frases útiles","会話"], sos:["SOS / Ayuda","緊急"],
  utiles:["Checklist antes del viaje","持ち物"], conversor:["Conversor ¥/€","両替"],
- mas:["Más","メニュー"], documentos:["Documentos","書類"]
+ mas:["Más","メニュー"]
 };
 function route(){
   var h=(location.hash||"#/inicio").replace(/^#\//,"");
@@ -1228,7 +1208,6 @@ function route(){
     case"utiles": html=vUtiles(); break;
     case"conversor": html=vConversor(); break;
     case"mas": html=vMas(); break;
-    case"documentos": html=vDocumentos(); showBack=true; break;
     default: html=vInicio(); base="inicio";
   }
   var m=META[base]||["",""];
