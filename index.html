@@ -280,7 +280,7 @@
 /* =================================================================== */
 
 var TRIP = {
-  nombre:"Nipones al Abordaje 2026",
+  nombre:"Nipones al Abordaje 2026 A&B",
   saludo:"",
   inicio:"2026-06-28",
   fin:"2026-07-14",
@@ -300,113 +300,112 @@ var DAYS = [
   bloques:[
    {h:"15:45", t:"Vuelo QR 150 · Madrid-Barajas → Doha", e:"✈️", d:"Qatar Airways. Salida de Barajas (T4S) 15:45 · llegada a Doha (DOH) 23:30.", p:"Aeropuerto Madrid Barajas T4"}
   ]},
- {id:"1", lbl:"Día 1", fecha:"2026-06-29", ciudad:"Tokio", tipo:"llegada", base:"Hotel Villa Fontaine Tokyo-Kayabacho", baseIc:"🏨",
+ {id:"1", lbl:"Día 1", fecha:"2026-06-29", ciudad:"Llegada a Tokio", tipo:"llegada", base:"Hotel Villa Fontaine Tokyo-Kayabacho", baseIc:"🏨",
   bloques:[
-   {h:"02:50", t:"Vuelo QR 806 · Doha → Tokio Narita", e:"✈️", d:"Qatar Airways. Llegada a Narita (NRT) 19:10.", p:"Aeropuerto Narita NRT"},
-   {h:"19:10", t:"Asistente y traslado en autocar", e:"🚌", d:"Un asistente espera al grupo para llevaros al hotel."},
-   {h:"20:30", t:"Check-in Villa Fontaine Tokyo", e:"🏨", d:"Llegada aprox. 20:30–21:30. Se requiere todo el grupo para verificar pasaportes.", p:"Hotel Villa Fontaine Tokyo Kayabacho"}
+   {h:"19:10", t:"Llegada a Narita · vuelo QR 806", e:"✈️", d:"Encuentro con el asistente en la puerta de llegadas (lleva un cartel identificativo).", p:"Aeropuerto Narita NRT", cu:"Narita está a ~60 km del centro de Tokio: el traslado puede durar más de una hora."},
+   {h:"Traslado", t:"Al hotel en autocar privado", e:"🚌", d:"Sube al autobús según pases el control de aduanas, da igual tu grupo (A o B). El primer bus sale al llegar a 40 pasajeros."},
+   {h:"Noche", t:"Check-in · Villa Fontaine Tokyo", e:"🏨", d:"☀️ El verano japonés es muy caluroso y húmedo: hidrátate y lleva sombrero, gafas de sol y protector solar.", p:"Hotel Villa Fontaine Tokyo Kayabacho"}
   ]},
- {id:"2", lbl:"Día 2", fecha:"2026-06-30", ciudad:"Tokio · contrastes modernos", tipo:"visita", base:"Hotel Villa Fontaine Tokyo-Kayabacho", baseIc:"🏨",
-  warn:"Intercambiado con el Día 14 para disfrutar del Mercado de Tsukiji abierto.",
+ {id:"2", lbl:"Día 2", fecha:"2026-06-30", ciudad:"Tokio", tipo:"visita", base:"Hotel Villa Fontaine Tokyo-Kayabacho", baseIc:"🏨",
   bloques:[
-   {h:"09:30", t:"Salida desde el hotel", e:"🚶"},
-   {h:"09:30~10:45", t:"Hamarikyu Garden", e:"🌳", d:"Oasis de paz junto a la bahía.", p:"Hamarikyu Gardens Tokyo"},
-   {h:"11:00~12:00", t:"Tokyo Tower", e:"🗼", d:"Vistas panorámicas (subida a 150 m).", p:"Tokyo Tower"},
-   {h:"12:30~14:30", t:"Mercado Externo de Tsukiji", e:"🍣", d:"Tiempo libre para almorzar sushi fresco.", p:"Tsukiji Outer Market"},
-   {h:"14:45~16:30", t:"Ginza", e:"🛍️", d:"Compras y arquitectura en el barrio más exclusivo.", p:"Ginza Tokyo"},
-   {h:"17:00~18:30", t:"Akihabara", e:"🎮", d:"Cultura otaku y tecnología.", p:"Akihabara Tokyo"},
+   {h:"06:30~09:30", t:"Desayuno en el hotel", e:"🍽️", d:"Puede haber cola: conviene repartir los horarios del grupo."},
+   {h:"09:30", t:"Salida del hotel", e:"🚌"},
+   {h:"09:45~11:00", t:"Jardín Hamarikyu", e:"🌳", p:"Hamarikyu Gardens Tokyo", cu:"Su 'pino de los 300 años' (1709) es tan enorme que se sostiene con decenas de muletas de madera."},
+   {h:"11:15~12:15", t:"Odaiba", e:"🌉", d:"Isla artificial de ocio en la bahía de Tokio.", p:"Odaiba Tokyo", cu:"Tiene una réplica de la Estatua de la Libertad y, enfrente, un Gundam gigante de 18 metros."},
+   {h:"12:45~14:45", t:"Mercado Exterior de Tsukiji", e:"🍣", d:"Tiempo libre y almuerzo libre.", p:"Tsukiji Outer Market", cu:"Japón consume cerca del 10% de todo el pescado del mundo, y buena parte pasó por Tsukiji."},
+   {h:"15:00~16:00", t:"Ginza", e:"🛍️", p:"Ginza Tokyo", cu:"Aquí está el edificio Wako, cuyo reloj de 1932 es uno de los símbolos de Tokio."},
+   {h:"16:30~17:30", t:"Torre de Tokio · observatorio a 150 m", e:"🗼", p:"Tokyo Tower", cu:"Se construyó en 1958 reutilizando acero de tanques estadounidenses de la guerra de Corea."},
+   {h:"18:00~18:45", t:"Akihabara", e:"🎮", p:"Akihabara Tokyo", cu:"Hay edificios enteros dedicados solo a máquinas de gachapon (cápsulas de juguetes)."},
    {h:"19:00", t:"Regreso al hotel", e:"🏨"}
   ]},
  {id:"3", lbl:"Día 3", fecha:"2026-07-01", ciudad:"Tokio · embarque", tipo:"crucero", base:"Celebrity Millennium", baseIc:"🚢",
   bloques:[
-   {h:"11:00", t:"Check-out del hotel", e:"🧳"},
-   {h:"13:00", t:"Traslado en autocar al Puerto de Tokio", e:"🚌", p:"Tokyo International Cruise Terminal"},
-   {h:"16:30", t:"¡El Celebrity Millennium zarpa!", e:"🚢", d:"Comienza el crucero."}
+   {h:"06:30~09:30", t:"Desayuno en el hotel", e:"🍽️"},
+   {h:"13:00", t:"Salida del hotel", e:"🧳", d:"El late check-out no está incluido."},
+   {h:"13:30", t:"Llegada al puerto de Tokio", e:"⚓", p:"Tokyo International Cruise Terminal"},
+   {h:"16:30", t:"¡El Celebrity Millennium zarpa!", e:"🚢", d:"Desde la Terminal Internacional de Cruceros de Tokio."}
   ]},
  {id:"4", lbl:"Día 4", fecha:"2026-07-02", ciudad:"Día de navegación", tipo:"mar", base:"Celebrity Millennium", baseIc:"🚢",
-  bloques:[{h:"Todo el día", t:"Relax a bordo", e:"🛳️", d:"Disfruta de las instalaciones del barco."}]},
- {id:"5", lbl:"Día 5", fecha:"2026-07-03", ciudad:"Osaka y Kioto", tipo:"visita", base:"Celebrity Millennium", baseIc:"🚢",
+  bloques:[{h:"Todo el día", t:"Día a bordo (sin servicio de autobús)", e:"🛳️", d:"Disfruta de las instalaciones del barco."}]},
+ {id:"5", lbl:"Día 5", fecha:"2026-07-03", ciudad:"Kioto", tipo:"visita", base:"Celebrity Millennium", baseIc:"🚢",
   bloques:[
-   {h:"08:00", t:"Llegada al puerto de Osaka", e:"⚓", p:"Osaka Port"},
-   {h:"09:00", t:"Salida hacia Kioto", e:"🚌"},
-   {h:"10:30~11:45", t:"Templo Kinkaku-ji (Pabellón Dorado)", e:"⛩️", p:"Kinkakuji Kyoto"},
-   {h:"12:30~13:45", t:"Templo Kiyomizu-dera", e:"⛩️", p:"Kiyomizu-dera Kyoto"},
-   {h:"13:45~15:00", t:"Calles Ninenzaka y Sannenzaka", e:"🏮", d:"Tiempo libre por las calles tradicionales.", p:"Sannenzaka Kyoto"},
-   {h:"15:40~17:00", t:"Castillo Nijo", e:"🏯", p:"Nijo Castle Kyoto"},
-   {h:"18:30", t:"Regreso al barco en Osaka", e:"🚢"}
+   {h:"08:00", t:"Llegada a Osaka · Terminal Tempozan", e:"⚓", p:"Tempozan Osaka", cu:"La terminal está junto a la gran noria Tempozan, una de las más altas de Japón."},
+   {h:"09:00", t:"Salida del puerto hacia Kioto", e:"🚌"},
+   {h:"10:30~11:45", t:"Templo Kinkakuji (Pabellón Dorado)", e:"⛩️", p:"Kinkakuji Kyoto", cu:"Sus dos plantas superiores están cubiertas con pan de oro puro: en total, unos 20 kg."},
+   {h:"12:30~13:45", t:"Templo Kiyomizu", e:"⛩️", p:"Kiyomizu-dera Kyoto", cu:"Su gran terraza se sostiene con 168 pilares de madera ensamblados sin un solo clavo."},
+   {h:"13:45~15:00", t:"Almuerzo libre en Ninenzaka y Sannenzaka", e:"🏮", p:"Sannenzaka Kyoto", cu:"Hasta las máquinas de Coca-Cola y los rótulos respetan aquí los tonos de madera tradicionales."},
+   {h:"15:40~17:00", t:"Castillo Nijo", e:"🏯", p:"Nijo Castle Kyoto", cu:"Sus suelos 'ruiseñor' chirrían a propósito al pisarlos, para avisar de intrusos."},
+   {h:"18:30", t:"Regreso al crucero", e:"🚢"}
   ]},
  {id:"6", lbl:"Día 6", fecha:"2026-07-04", ciudad:"Osaka", tipo:"visita", base:"Celebrity Millennium", baseIc:"🚢",
   bloques:[
-   {h:"09:00", t:"Salida desde el puerto", e:"🚌"},
-   {h:"09:30~11:00", t:"Castillo de Osaka", e:"🏯", p:"Osaka Castle"},
-   {h:"11:30~13:00", t:"Umeda Sky Building", e:"🗼", d:"Mirador flotante.", p:"Umeda Sky Building Osaka"},
-   {h:"13:30~16:00", t:"Dotonbori", e:"🍢", d:"Gastronomía y neones (takoyaki / okonomiyaki).", p:"Dotonbori Osaka"},
-   {h:"18:00", t:"El barco zarpa", e:"🚢"}
+   {h:"09:30~11:30", t:"Observatorio del Umeda Sky Building", e:"🗼", p:"Umeda Sky Building Osaka", cu:"Cada torre se subió por separado y el puente que las une se elevó ya montado, a 170 m."},
+   {h:"11:45~13:45", t:"Castillo de Osaka", e:"🏯", p:"Osaka Castle", cu:"Sus murallas se alzaron con piedras gigantes; la mayor pesa unas 130 toneladas."},
+   {h:"14:00~16:00", t:"Tiempo libre y almuerzo en Dotonbori", e:"🍢", p:"Dotonbori Osaka", cu:"El cartel del corredor de Glico brilla aquí desde 1935 y va ya por su sexta versión."},
+   {h:"16:30", t:"Regreso al crucero", e:"🚢"},
+   {h:"18:00", t:"Salida del crucero desde Osaka", e:"🚢"}
   ]},
  {id:"7", lbl:"Día 7", fecha:"2026-07-05", ciudad:"Kochi", tipo:"visita", base:"Celebrity Millennium", baseIc:"🚢",
   bloques:[
-   {h:"09:00", t:"Salida desde el puerto", e:"🚌"},
-   {h:"09:30~10:30", t:"Castillo de Kochi", e:"🏯", p:"Kochi Castle"},
-   {h:"11:00~12:00", t:"Templo Chikurin-ji", e:"⛩️", d:"Bosque y templo budista.", p:"Chikurinji Kochi"},
-   {h:"12:30~14:15", t:"Mercado Hirome", e:"🍤", d:"Gastronomía local.", p:"Hirome Market Kochi"},
-   {h:"14:30~15:30", t:"Jardín Botánico Makino", e:"🌿", p:"Makino Botanical Garden Kochi"},
-   {h:"17:00", t:"El barco zarpa", e:"🚢"}
+   {h:"09:30~10:30", t:"Castillo de Kochi", e:"🏯", p:"Kochi Castle", cu:"Es uno de los 12 castillos de Japón que conservan su torre de madera original."},
+   {h:"11:00~12:00", t:"Templo Chikurinji", e:"⛩️", p:"Chikurinji Kochi", cu:"Es la parada nº 31 del peregrinaje budista de los 88 templos de Shikoku."},
+   {h:"12:30~14:15", t:"Almuerzo libre en el Mercado Hirome", e:"🍤", p:"Hirome Market Kochi", cu:"Su plato estrella, el bonito (katsuo), se flamea con paja de arroz delante de ti."},
+   {h:"14:30~15:30", t:"Jardín Botánico Makino", e:"🌿", p:"Makino Botanical Garden Kochi", cu:"Honra a Makino, que clasificó más de 1.500 plantas y es el 'padre de la botánica japonesa'."},
+   {h:"16:00", t:"Regreso al crucero", e:"🚢"},
+   {h:"17:00", t:"Salida del puerto de Kochi", e:"🚢"}
   ]},
  {id:"8", lbl:"Día 8", fecha:"2026-07-06", ciudad:"Día de navegación", tipo:"mar", base:"Celebrity Millennium", baseIc:"🚢",
-  bloques:[{h:"Todo el día", t:"Relax a bordo", e:"🛳️"}]},
+  bloques:[{h:"Todo el día", t:"Día a bordo (sin servicio de autobús)", e:"🛳️"}]},
  {id:"9", lbl:"Día 9", fecha:"2026-07-07", ciudad:"Busan (Corea del Sur)", tipo:"libre", base:"Celebrity Millennium", baseIc:"🚢",
-  bloques:[{h:"Día libre", t:"Descubre Busan a tu ritmo", e:"🇰🇷", d:"Sin visita organizada. Ideas: Gamcheon Culture Village, mercado de Jagalchi, playa de Haeundae.", p:"Busan Port"}]},
+  bloques:[{h:"Día libre", t:"Busan a tu aire (sin servicio de autobús)", e:"🇰🇷", d:"Ideas: Gamcheon Culture Village, mercado de Jagalchi, playa de Haeundae.", p:"Busan Port"}]},
  {id:"10", lbl:"Día 10", fecha:"2026-07-08", ciudad:"Nagasaki", tipo:"visita", base:"Celebrity Millennium", baseIc:"🚢",
   bloques:[
-   {h:"07:00", t:"Llegada al puerto", e:"⚓", p:"Nagasaki Port"},
-   {h:"08:30~11:00", t:"Peace Park y Museo de la Bomba Atómica", e:"🕊️", p:"Nagasaki Peace Park"},
-   {h:"11:30~13:30", t:"Iglesia Oura y Glover Garden", e:"⛪", p:"Glover Garden Nagasaki"},
-   {h:"13:45~15:45", t:"Barrio chino Shinchi", e:"🥢", d:"Tiempo libre para comer.", p:"Shinchi Chinatown Nagasaki"},
-   {h:"16:00~17:00", t:"Isla histórica de Dejima", e:"🏝️", p:"Dejima Nagasaki"},
-   {h:"19:00", t:"El barco zarpa", e:"🚢"}
+   {h:"08:30~11:00", t:"Parque de la Paz y Museo de la Bomba Atómica", e:"🕊️", p:"Nagasaki Peace Park", cu:"Un reloj del museo está parado a las 11:02: la hora exacta de la explosión del 9 de agosto de 1945."},
+   {h:"11:30~13:30", t:"Iglesia de Oura y Jardín Glover", e:"⛪", p:"Glover Garden Nagasaki", cu:"La iglesia de Oura es el edificio cristiano más antiguo que sigue en pie en Japón."},
+   {h:"13:45~15:45", t:"Tiempo libre y almuerzo en Chinatown Shinchi", e:"🥢", p:"Shinchi Chinatown Nagasaki", cu:"Es uno de los tres barrios chinos históricos de Japón y cuna del plato 'champon'."},
+   {h:"16:00~17:00", t:"Isla Dejima", e:"🏝️", p:"Dejima Nagasaki", cu:"Durante más de 200 años fue el único punto por el que Japón comerciaba con Europa."},
+   {h:"17:30", t:"Regreso al crucero", e:"🚢"},
+   {h:"19:00", t:"Salida del puerto", e:"🚢"}
   ]},
  {id:"11", lbl:"Día 11", fecha:"2026-07-09", ciudad:"Kagoshima", tipo:"visita", base:"Celebrity Millennium", baseIc:"🚢",
   bloques:[
-   {h:"07:00", t:"Llegada al puerto", e:"⚓", p:"Kagoshima Port"},
-   {h:"09:00~10:00", t:"Chiran Peace Museum (pilotos kamikaze)", e:"🕊️", p:"Chiran Peace Museum"},
-   {h:"10:15~11:30", t:"Casas de los Samuráis de Chiran", e:"🏯", p:"Chiran Samurai Residences"},
-   {h:"12:30~13:45", t:"Calle comercial Tenmonkan", e:"🛍️", d:"Almuerzo y compras.", p:"Tenmonkan Kagoshima"},
-   {h:"14:00~15:00", t:"Jardín Senganen", e:"🌋", d:"Vistas al volcán Sakurajima.", p:"Sengan-en Kagoshima"},
-   {h:"17:00", t:"El barco zarpa", e:"🚢"}
+   {h:"09:00~10:00", t:"Museo de la Paz de Chiran (pilotos kamikaze)", e:"🕊️", p:"Chiran Peace Museum", cu:"Conserva las cartas de despedida de pilotos adolescentes; estremece leerlas."},
+   {h:"10:15~11:30", t:"Residencias Samurái de Chiran", e:"🏯", p:"Chiran Samurai Residences", cu:"A Chiran la apodan 'el pequeño Kioto de Satsuma' por sus jardines preservados."},
+   {h:"12:30~13:45", t:"Almuerzo libre en la calle Tenmonkan", e:"🛍️", p:"Tenmonkan Kagoshima", cu:"Su nombre viene de un observatorio astronómico que el clan Shimazu levantó aquí en el s. XVIII."},
+   {h:"14:00~15:00", t:"Sengan-en", e:"🌋", d:"Jardín con vistas al volcán Sakurajima.", p:"Sengan-en Kagoshima", cu:"Usa el volcán Sakurajima, al otro lado de la bahía, como gigantesco 'paisaje prestado'."},
+   {h:"16:00", t:"Regreso al crucero", e:"🚢"},
+   {h:"17:00", t:"Salida del puerto", e:"🚢"}
   ]},
  {id:"12", lbl:"Día 12", fecha:"2026-07-10", ciudad:"Día de navegación", tipo:"mar", base:"Celebrity Millennium", baseIc:"🚢",
-  bloques:[{h:"Todo el día", t:"Descanso rumbo a la península central", e:"🛳️"}]},
+  bloques:[{h:"Todo el día", t:"Día a bordo (sin servicio de autobús)", e:"🛳️"}]},
  {id:"13", lbl:"Día 13", fecha:"2026-07-11", ciudad:"Shimizu", tipo:"visita", base:"Celebrity Millennium", baseIc:"🚢",
-  warn:"Cambios recomendados por guías locales para una mejor experiencia.",
+  warn:"Tras bajar del teleférico hay ~100 escalones de piedra hasta el santuario Kunozan. Lleva calzado cómodo; quien no quiera subir puede quedarse en Yume Terrace. No hay reembolso por el teleférico ni la entrada.",
   bloques:[
-   {h:"07:00", t:"Llegada al puerto", e:"⚓", p:"Shimizu Port Shizuoka"},
-   {h:"08:30~10:00", t:"Nihondaira Ropeway, Yumeterrace y Kunozan Toshogu", e:"🗻", d:"Vistas del Monte Fuji.", p:"Nihondaira Ropeway"},
-   {h:"Nuevo", t:"Santuario Fujisan Hongu Sengen Taisha", e:"⛩️", d:"El santuario más importante vinculado al Fuji, con el estanque Wakutama-ike (agua del deshielo). Sustituye a Ocha Kaikan y al Castillo de Sumpu.", p:"Fujisan Hongu Sengen Taisha"},
-   {h:"12:00~13:30", t:"Mercado de pescado de Shimizu", e:"🐟", p:"Shimizu Fish Market Kashinoichi"},
-   {h:"14:00~14:30", t:"Mihonomatsubara", e:"🌲", d:"Paseo por el bosque de pinos en la costa.", p:"Miho no Matsubara Shizuoka"},
-   {h:"18:00", t:"El barco zarpa", e:"🚢"}
+   {h:"08:30~09:00", t:"Nihondaira Yume Terrace", e:"🗻", d:"Mirador con vistas al Monte Fuji y la bahía.", p:"Nihondaira Yume Terrace", cu:"Es un mirador de madera en espiral, obra de un arquitecto japonés famoso."},
+   {h:"09:00~10:00", t:"Teleférico Nihondaira y Santuario Kunozan Toshogu", e:"⛩️", p:"Kunozan Toshogu", cu:"El sogún Tokugawa Ieyasu fue enterrado primero aquí, antes que en su famoso mausoleo de Nikko."},
+   {h:"10:30~11:15", t:"Mihono Matsubara", e:"🌲", d:"Bosque de pinos junto al mar, con el Fuji al fondo.", p:"Miho no Matsubara Shizuoka", cu:"Escenario de la leyenda Hagoromo: un ángel dejó su túnica de plumas colgada de un pino."},
+   {h:"11:40~13:00", t:"Almuerzo libre en el Mercado de Pescado de Shimizu (Kashi no Ichi)", e:"🐟", p:"Shimizu Fish Market Kashinoichi", cu:"Shimizu es el mayor puerto atunero de Japón: aquí se subasta atún de todo el Pacífico."},
+   {h:"14:00~15:30", t:"Santuario Fujisan Hongu Sengen Taisha", e:"⛩️", p:"Fujisan Hongu Sengen Taisha", cu:"Sorprendente: la cumbre del Monte Fuji, por encima de los 3.360 m, es propiedad de este santuario."},
+   {h:"16:45", t:"Regreso al crucero", e:"🚢"},
+   {h:"18:00", t:"Salida del puerto", e:"🚢"}
   ]},
- {id:"14", lbl:"Día 14", fecha:"2026-07-12", ciudad:"Tokio · tradición imperial", tipo:"visita", base:"Celebrity Millennium (puerto de Tokio)", baseIc:"🚢",
-  warn:"Originalmente planeado para el Día 2.",
+ {id:"14", lbl:"Día 14", fecha:"2026-07-12", ciudad:"Tokio", tipo:"visita", base:"Celebrity Millennium (puerto de Tokio)", baseIc:"🚢",
   bloques:[
-   {h:"08:00", t:"Llegada al puerto de Tokio", e:"⚓", p:"Tokyo International Cruise Terminal"},
-   {h:"09:00", t:"Inicio de ruta", e:"🚌"},
-   {h:"09:30~11:00", t:"Jardines del Este del Palacio Imperial", e:"🌳", p:"Imperial Palace East Gardens Tokyo"},
-   {h:"11:30~12:30", t:"Senso-ji y puerta Kaminarimon (Asakusa)", e:"⛩️", p:"Senso-ji Asakusa"},
-   {h:"12:30~14:00", t:"Calle Nakamise Dori", e:"🏮", d:"Tiempo libre de compras.", p:"Nakamise Dori Asakusa"},
-   {h:"14:45~16:45", t:"Santuario Meiji y Harajuku", e:"⛩️", d:"Bosque del santuario + moda vanguardista.", p:"Meiji Jingu Tokyo"},
-   {h:"17:00~18:15", t:"Cruce de Shibuya", e:"🚦", p:"Shibuya Crossing"},
-   {h:"19:00", t:"Noche en el puerto de Tokio", e:"🚢"}
+   {h:"09:30~11:00", t:"Jardines Orientales del Palacio Imperial", e:"🌳", p:"Imperial Palace East Gardens Tokyo", cu:"Ocupan las ruinas del castillo de Edo, en su día el castillo más grande del mundo."},
+   {h:"11:30~12:30", t:"Asakusa · Templo Sensoji", e:"⛩️", p:"Senso-ji Asakusa", cu:"Es el templo más antiguo de Tokio (año 645) y su farol rojo pesa unos 700 kg."},
+   {h:"12:30~14:30", t:"Tiempo libre y almuerzo en Nakamise-dori", e:"🏮", p:"Nakamise Dori Asakusa", cu:"Lleva más de tres siglos vendiendo dulces a los peregrinos camino del templo."},
+   {h:"15:15~16:45", t:"Santuario Meiji y Harajuku", e:"⛩️", p:"Meiji Jingu Tokyo", cu:"Su bosque, de 100.000 árboles donados de todo Japón, se plantó a mano hace un siglo."},
+   {h:"17:00~18:30", t:"Shibuya", e:"🚦", p:"Shibuya Crossing", cu:"En cada cambio de semáforo pueden cruzarlo hasta 3.000 personas a la vez."},
+   {h:"19:00", t:"Regreso al crucero", e:"🚢"}
   ]},
- {id:"15", lbl:"Día 15", fecha:"2026-07-13", ciudad:"Yokohama, Kamakura y vuelo", tipo:"vuelo", base:"En ruta (vuelo nocturno)", baseIc:"✈️",
+ {id:"15", lbl:"Día 15", fecha:"2026-07-13", ciudad:"Yokohama, Kamakura y vuelo", tipo:"visita", base:"En ruta (vuelo nocturno)", baseIc:"✈️",
   bloques:[
-   {h:"09:00", t:"Desembarque", e:"🧳"},
-   {h:"10:00~11:30", t:"Yokohama: Red Brick Warehouse y Yamashita Park", e:"🧱", p:"Yokohama Red Brick Warehouse"},
-   {h:"12:30~13:30", t:"Santuario Hachimangu (Kamakura)", e:"⛩️", p:"Tsurugaoka Hachimangu Kamakura"},
-   {h:"13:30~15:00", t:"Almuerzo en Komachi Street", e:"🍡", p:"Komachi Street Kamakura"},
-   {h:"15:30~17:00", t:"Gran Buda de Kamakura (Kotoku-in)", e:"🗿", p:"Kotokuin Great Buddha Kamakura"},
+   {h:"10:00~11:30", t:"Yokohama: Almacén de Ladrillo Rojo y Parque Yamashita", e:"🧱", p:"Yokohama Red Brick Warehouse", cu:"Estos almacenes de ladrillo de hace un siglo sobrevivieron al gran terremoto de 1923."},
+   {h:"12:30~13:30", t:"Santuario Tsurugaoka Hachimangu (Kamakura)", e:"⛩️", p:"Tsurugaoka Hachimangu Kamakura", cu:"Fue el centro espiritual del primer gobierno samurái de Japón, en el siglo XII."},
+   {h:"13:30~15:00", t:"Tiempo libre y almuerzo en la calle Komachi", e:"🍡", p:"Komachi Street Kamakura", cu:"Aquí triunfan el helado y el senbei (galleta de arroz) tostado al momento."},
+   {h:"15:30~17:00", t:"Templo Kotokuin · Gran Buda", e:"🗿", p:"Kotokuin Great Buddha Kamakura", cu:"El Buda de bronce de 93 toneladas está hueco: por unas monedas puedes entrar en su interior."},
    {h:"19:30", t:"Llegada al Aeropuerto de Narita", e:"🛫", p:"Aeropuerto Narita NRT"},
-   {h:"22:25", t:"Vuelo QR 807 · Narita → Doha", e:"✈️", d:"Qatar Airways."}
+   {h:"22:25", t:"Salida · vuelo QR 807", e:"✈️", d:"Qatar Airways."}
   ]},
  {id:"regreso", lbl:"Regreso", fecha:"2026-07-14", ciudad:"Doha → Madrid (Barajas)", tipo:"vuelo", base:"Llegada a Madrid-Barajas · fin del viaje", baseIc:"✈️",
   bloques:[
@@ -876,7 +875,7 @@ function vDia(id){
       +'<div class="tl-time">'+esc(b.h)+'</div>'
       +'<div class="tl-ttl"><span class="e">'+(b.e||"•")+'</span>'+esc(b.t)+'</div>'
       +(b.d?'<div class="tl-desc">'+esc(b.d)+'</div>':'')
-      +(CUR[b.t]?'<div class="tl-cur">💡 '+esc(CUR[b.t])+'</div>':'')
+      +(b.cu?'<div class="tl-cur">💡 '+esc(b.cu)+'</div>':'')
       +(b.p?'<a class="tl-link" target="_blank" rel="noopener" href="'+maps(b.p)+'">📍 Abrir en Maps</a>':'')
       +'</div>';
   }
