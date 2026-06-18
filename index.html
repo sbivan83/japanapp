@@ -1006,6 +1006,13 @@ function vDia(id){
   out+='<div class="card chk-toggle" data-done="'+d.id+'" style="cursor:pointer">'
     +'<div class="chk '+(marcado?"on":"")+'" style="border:0;padding:2px 0">'
     +'<div class="box">'+(marcado?"✓":"")+'</div><div class="lab">'+(marcado?"Día completado":"Marcar día como completado")+'</div></div></div>';
+
+  // navegación día anterior / siguiente
+  var ix=DAYS.indexOf(d); var prev=DAYS[ix-1], next=DAYS[ix+1];
+  out+='<div class="btnrow" style="margin-top:10px">'
+    +(prev?'<a class="btn line" href="#/dia/'+prev.id+'" style="flex:1">← '+esc(prev.lbl)+'</a>':'<span style="flex:1"></span>')
+    +(next?'<a class="btn line" href="#/dia/'+next.id+'" style="flex:1">'+esc(next.lbl)+' →</a>':'<span style="flex:1"></span>')
+    +'</div>';
   out+='<div class="spacer"></div>';
   return out;
 }
