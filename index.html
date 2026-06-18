@@ -360,10 +360,7 @@ var TRIP = {
     ["🛂","Pasaportes gestionados para el check-in del grupo. Llevadlos siempre a mano."],
     ["📱","Gestionar el QR de entrada a Japón (Visit Japan Web): el código no se genera hasta ~2 semanas antes del viaje, pero el registro previo se puede hacer ya."],
     ["☀️","Julio en Japón es muy caluroso y húmedo: gorra, gafas de sol, protección solar y beber mucha agua."],
-    ["🚢","Crucero Celebrity Millennium · grupo de ~80 personas."],
-    ["👥","Team Leaders definitivos: revisad la lista, hay cambios de líder, alguna pareja nueva y algún cambio de excursión."],
-    ["🛫","Qatar Airways recomienda estar en el aeropuerto 3 horas antes de la salida: como tarde a las 12:15 en Madrid Barajas."],
-    ["🛄","Mostradores de facturación: del 910 al 919. En cuanto abran, ya se puede empezar a facturar."]
+    ["🚢","Crucero Celebrity Millennium · grupo de ~80 personas."]
   ]
 };
 
@@ -512,19 +509,19 @@ var HOTELS = [
 ];
 
 // Team Leaders por día de excursión/traslado · actualizado 2026-06-18
-var LEADERS = [
- {dia:"Día 1 (29/06/2026)", t:"Llegada a Tokio", rojo:"Jose M. Espinosa / Juan Carlos Galvan", azul:"Sergio Espinosa / Pablo Lamas"},
- {dia:"Día 2 (30/06/2026)", t:"Tokio (Visita ciudad)", rojo:"Chema / Luis", azul:"Sandra / Sergio García De Mingo"},
- {dia:"Día 3 (01/07/2026)", t:"Tokio – Embarque en Puerto de Tokio", rojo:"Sebas / Capi", azul:"Rodrigo / Celia"},
- {dia:"Día 5 (03/07/2026)", t:"Puerto de Osaka – Kioto (Excursión)", rojo:"Mari Luz / Marisol", azul:"Pablo Lamas / Giorgia"},
- {dia:"Día 6 (04/07/2026)", t:"Osaka (Visita ciudad)", rojo:"July / Nieves", azul:"Enri / José Luis Martínez"},
- {dia:"Día 7 (05/07/2026)", t:"Kochi (Excursión)", rojo:"Angel / Julia Madrid", azul:"Sergio Espinosa / Iván"},
- {dia:"Día 10 (08/07/2026)", t:"Nagasaki (Excursión)", rojo:"Marta / Gines", azul:"Luis Miguel / María de la Flor"},
- {dia:"Día 11 (09/07/2026)", t:"Kagoshima (Excursión)", rojo:"Sergio Alises / Alicia", azul:"Bruno / Barbara"},
- {dia:"Día 13 (11/07/2026)", t:"Shimizu (Excursión – Monte Fuji)", rojo:"Yola / Encarni", azul:"Anne / Ana Belén Sandín"},
- {dia:"Día 14 (12/07/2026)", t:"Tokio (Visita ciudad)", rojo:"Jesús Camero / Isa Jiménez", azul:"Jose Ramón / Juan José de Cea"},
- {dia:"Día 15 (13/07/2026)", t:"Yokohama & Kamakura – Aeropuerto", rojo:"Mercedes / José Manuel Espinosa", azul:"Jose Manuel Romero / Celia"}
-];
+var LEADERS = {
+ "1":{rojo:"Jose M. Espinosa / Juan Carlos Galvan", azul:"Sergio Espinosa / Pablo Lamas"},
+ "2":{rojo:"Chema / Luis", azul:"Sandra / Sergio García De Mingo"},
+ "3":{rojo:"Sebas / Capi", azul:"Rodrigo / Celia"},
+ "5":{rojo:"Mari Luz / Marisol", azul:"Pablo Lamas / Giorgia"},
+ "6":{rojo:"July / Nieves", azul:"Enri / José Luis Martínez"},
+ "7":{rojo:"Angel / Julia Madrid", azul:"Sergio Espinosa / Iván"},
+ "10":{rojo:"Marta / Gines", azul:"Luis Miguel / María de la Flor"},
+ "11":{rojo:"Sergio Alises / Alicia", azul:"Bruno / Barbara"},
+ "13":{rojo:"Yola / Encarni", azul:"Anne / Ana Belén Sandín"},
+ "14":{rojo:"Jesús Camero / Isa Jiménez", azul:"Jose Ramón / Juan José de Cea"},
+ "15":{rojo:"Mercedes / José Manuel Espinosa", azul:"Jose Manuel Romero / Celia"}
+};
 
 var PLACES = [
  // Tokio
@@ -978,7 +975,14 @@ function vDia(id){
     +sceneBanner(dayScene(d),"lg",d.lbl+" · "+fechaLarga(d.fecha),d.ciudad, st==="hoy"?'<div class="ov-tr"><span class="pill hoy">● HOY</span></div>':"")
     +'<div class="pad">';
   if(d.warn)out+='<div class="note" style="margin-top:0">⚠️ <b>Modificado:</b> '+esc(d.warn)+'</div>';
+  if(d.id==="ida")out+='<div class="note" style="margin-top:0">'+ic("🛄")+' Qatar Airways recomienda estar 3 horas antes de la salida: como tarde a las <b>12:15</b> en el aeropuerto. Mostradores de facturación <b>910 a 919</b>: en cuanto abran, ya se puede empezar a facturar.</div>';
   out+='<div class="base-line" style="margin-bottom:0">'+ic(d.baseIc)+' Noche: '+esc(d.base)+'</div></div></div>';
+
+  var lead=LEADERS[d.id];
+  if(lead)out+='<div class="card"><div class="sec-title" style="margin-top:0">Team Leaders</div>'
+    +'<div class="info"><div class="l">🔴 Grupo A</div><div class="v">'+esc(lead.rojo)+'</div></div>'
+    +'<div class="info"><div class="l">🔵 Grupo B</div><div class="v">'+esc(lead.azul)+'</div></div>'
+    +'</div>';
 
   out+='<div class="card"><div class="tl">';
   for(var i=0;i<d.bloques.length;i++){
@@ -1010,7 +1014,6 @@ function vDia(id){
 function vVuelos(){ var out=vVuelosBody(); out+='<div class="spacer"></div>'; return out; }
 function vVuelosBody(){
   var out='<div class="note" style="margin:14px 0 4px">'+ic("✈")+' Vuelos y barco: <b>localizador y equipaje los gestiona el organizador</b> (grupo de 80). Aquí tienes todos los horarios.</div>';
-  out+='<div class="note">'+ic("🛄")+' Qatar Airways recomienda estar 3 horas antes de la salida: como tarde a las <b>12:15</b> en el aeropuerto. Mostradores de facturación <b>910 a 919</b>: en cuanto abran, ya se puede empezar a facturar.</div>';
   out+='<div class="sec-title">Vuelos · Qatar Airways</div>';
   for(var i=0;i<FLIGHTS.length;i++){
     var f=FLIGHTS[i];
@@ -1022,21 +1025,6 @@ function vVuelosBody(){
       +'<div class="info"><div class="l">Terminal</div><div class="v">'+f.term+'</div></div>'
       +'<div class="info"><div class="l">Localizador</div><div class="v badge-soft">Lo lleva el organizador</div></div>'
       +'<a class="btn line" target="_blank" rel="noopener" href="'+maps(f.mapa)+'" style="margin-top:10px">📍 '+esc(f.aN)+' en Maps</a>'
-      +'</div>';
-  }
-  out+='<div class="spacer"></div>';
-  return out;
-}
-
-/* ---------------- RENDER: TEAM LEADERS ---------------- */
-function vLideres(){
-  var out='<div class="note" style="margin:14px 0 4px">'+ic("👥")+' Team Leaders por día de excursión/traslado. Lista definitiva: revisad cambios de pareja, líder y excursión.</div>';
-  for(var i=0;i<LEADERS.length;i++){
-    var l=LEADERS[i];
-    out+='<div class="card"><div class="muted small" style="font-weight:700;margin-bottom:2px">'+esc(l.dia)+'</div>'
-      +'<h3 style="font-size:16px;margin:0 0 8px">'+esc(l.t)+'</h3>'
-      +'<div class="info"><div class="l">🔴 Grupo A</div><div class="v">'+esc(l.rojo)+'</div></div>'
-      +'<div class="info"><div class="l">🔵 Grupo B</div><div class="v">'+esc(l.azul)+'</div></div>'
       +'</div>';
   }
   out+='<div class="spacer"></div>';
@@ -1225,8 +1213,7 @@ function vMas(){
     +qbtn("#/sos","🆘","SOS","sos")
     +'</div>';
   out+='<div class="sec-title">El grupo</div><div class="card">';
-  out+='<div class="note" style="margin-top:0">Grupo de ~'+TRIP.grupoTotal+' personas · Crucero '+esc(TRIP.crucero)+'</div>'
-    +'<a class="btn solid" href="#/lideres" style="margin-top:10px">👥 Team Leaders por excursión</a></div>';
+  out+='<div class="note" style="margin-top:0">Grupo de ~'+TRIP.grupoTotal+' personas · Crucero '+esc(TRIP.crucero)+'</div></div>';
   out+='<div class="spacer"></div>';
   return out;
 }
@@ -1237,7 +1224,7 @@ var META={
  vuelos:["Viaje y transporte","移動"], hoteles:["Hoteles","ホテル"], lugares:["Lugares","名所"],
  mapa:["Mapa","地図"], frases:["Frases útiles","会話"], sos:["SOS / Ayuda","緊急"],
  utiles:["Checklist antes del viaje","持ち物"], conversor:["Conversor ¥/€","両替"],
- mas:["Más","メニュー"], lideres:["Team Leaders","リーダー"]
+ mas:["Más","メニュー"]
 };
 function route(){
   var h=(location.hash||"#/inicio").replace(/^#\//,"");
@@ -1256,7 +1243,6 @@ function route(){
     case"utiles": html=vUtiles(); break;
     case"conversor": html=vConversor(); break;
     case"mas": html=vMas(); break;
-    case"lideres": html=vLideres(); showBack=true; break;
     default: html=vInicio(); base="inicio";
   }
   var m=META[base]||["",""];
