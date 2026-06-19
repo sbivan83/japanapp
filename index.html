@@ -523,6 +523,64 @@ var LEADERS = {
  "15":{rojo:"Mercedes / José Manuel Espinosa", azul:"Jose Manuel Romero / Celia"}
 };
 
+// Coordenadas por día para la previsión del tiempo (días de navegación sin escala se omiten)
+var WXCOORDS = {
+ ida:{lat:40.4168,lon:-3.7038,nom:"Madrid"},
+ "1":{lat:35.6762,lon:139.6503,nom:"Tokio"},
+ "2":{lat:35.6762,lon:139.6503,nom:"Tokio"},
+ "3":{lat:35.6762,lon:139.6503,nom:"Tokio"},
+ "5":{lat:35.0116,lon:135.7681,nom:"Kioto"},
+ "6":{lat:34.6937,lon:135.5023,nom:"Osaka"},
+ "7":{lat:33.5597,lon:133.5311,nom:"Kochi"},
+ "9":{lat:35.1796,lon:129.0756,nom:"Busan"},
+ "10":{lat:32.7503,lon:129.8777,nom:"Nagasaki"},
+ "11":{lat:31.5602,lon:130.5581,nom:"Kagoshima"},
+ "13":{lat:35.0116,lon:138.4877,nom:"Shimizu"},
+ "14":{lat:35.6762,lon:139.6503,nom:"Tokio"},
+ "15":{lat:35.4437,lon:139.6380,nom:"Yokohama"},
+ regreso:{lat:35.6762,lon:139.6503,nom:"Tokio"}
+};
+var WXFETCHING={};
+function wxToday(){return new Date().toISOString().slice(0,10);}
+function wxEmoji(c){
+ if(c===0)return"☀️"; if(c===1||c===2)return"🌤️"; if(c===3)return"☁️";
+ if(c===45||c===48)return"🌫️";
+ if([51,53,55,56,57].indexOf(c)>=0)return"🌦️";
+ if([61,63,65,66,67,80,81,82].indexOf(c)>=0)return"🌧️";
+ if([71,73,75,77,85,86].indexOf(c)>=0)return"❄️";
+ if([95,96,99].indexOf(c)>=0)return"⛈️";
+ return"🌡️";
+}
+function wxLabel(c){
+ if(c===0)return"Despejado"; if(c===1||c===2)return"Poco nuboso"; if(c===3)return"Nublado";
+ if(c===45||c===48)return"Niebla";
+ if([51,53,55].indexOf(c)>=0)return"Llovizna"; if([56,57].indexOf(c)>=0)return"Llovizna helada";
+ if([61,63,65].indexOf(c)>=0)return"Lluvia"; if([66,67].indexOf(c)>=0)return"Lluvia helada";
+ if([71,73,75,77].indexOf(c)>=0)return"Nieve";
+ if([80,81,82].indexOf(c)>=0)return"Chubascos"; if([85,86].indexOf(c)>=0)return"Chubascos de nieve";
+ if([95,96,99].indexOf(c)>=0)return"Tormenta";
+ return"—";
+}
+function fetchWeather(id,c,fecha){
+ if(WXFETCHING[id])return; WXFETCHING[id]=true;
+ var url="https://api.open-meteo.com/v1/forecast?latitude="+c.lat+"&longitude="+c.lon
+   +"&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto&start_date="+fecha+"&end_date="+fecha;
+ fetch(url).then(function(r){return r.json();}).then(function(j){
+   var ix=(j.daily&&j.daily.time)?j.daily.time.indexOf(fecha):-1;
+   var res= ix>=0
+     ? {day:wxToday(),state:"ok",code:j.daily.weathercode[ix],tmax:Math.round(j.daily.temperature_2m_max[ix]),tmin:Math.round(j.daily.temperature_2m_min[ix])}
+     : {day:wxToday(),state:"nodata"};
+   save("wx_"+id,res); delete WXFETCHING[id]; route();
+ }).catch(function(){ save("wx_"+id,{day:wxToday(),state:"error"}); delete WXFETCHING[id]; route(); });
+}
+function getWeather(d){
+ var c=WXCOORDS[d.id]; if(!c)return null;
+ var cached=store("wx_"+d.id,null);
+ if(cached&&cached.day===wxToday())return cached;
+ fetchWeather(d.id,c,d.fecha);
+ return(cached&&cached.state==="ok")?cached:{state:"loading"};
+}
+
 var PLACES = [
  // Tokio
  {id:"hamarikyu", n:"Hamarikyu Garden", c:"Tokio", cat:"jardin", q:"Jardín paisajístico de la era Edo junto a la bahía.", por:"Oasis de calma entre rascacielos, con casa de té sobre un estanque de agua salada.", t:"1 h", con:"El estanque sube y baja con la marea: el único así en Tokio.", dato:"Fue coto de caza de patos del shogunato Tokugawa."},
@@ -990,6 +1048,16 @@ function vDia(id){
     +'<div class="info"><div class="l">🔴 Grupo A</div><div class="v">'+esc(lead.rojo)+'</div></div>'
     +'<div class="info"><div class="l">🔵 Grupo B</div><div class="v">'+esc(lead.azul)+'</div></div>'
     +'</div>';
+
+  var wxC=WXCOORDS[d.id], wx=getWeather(d);
+  if(wx){
+    out+='<div class="card"><div class="sec-title" style="margin-top:0">Previsión · '+esc(wxC.nom)+'</div>';
+    if(wx.state==="ok")out+='<div class="kv"><span class="ic">'+wxEmoji(wx.code)+'</span><span class="tx">'+wxLabel(wx.code)+' · máx '+wx.tmax+'°C / mín '+wx.tmin+'°C</span></div>';
+    else if(wx.state==="nodata")out+='<div class="note" style="margin-top:0">Aún no disponible: la previsión se publica unos 16 días antes de la fecha.</div>';
+    else if(wx.state==="error")out+='<div class="note" style="margin-top:0">No se ha podido cargar la previsión ahora mismo.</div>';
+    else out+='<div class="note" style="margin-top:0">Cargando previsión…</div>';
+    out+='</div>';
+  }
 
   out+='<div class="card"><div class="tl">';
   for(var i=0;i<d.bloques.length;i++){
