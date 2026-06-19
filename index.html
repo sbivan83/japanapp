@@ -564,11 +564,14 @@ function wxLabel(c){
 function fetchWeather(id,c,fecha){
  if(WXFETCHING[id])return; WXFETCHING[id]=true;
  var url="https://api.open-meteo.com/v1/forecast?latitude="+c.lat+"&longitude="+c.lon
-   +"&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto&start_date="+fecha+"&end_date="+fecha;
+   +"&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,relative_humidity_2m_max,relative_humidity_2m_min&timezone=auto&start_date="+fecha+"&end_date="+fecha;
  fetch(url).then(function(r){return r.json();}).then(function(j){
    var ix=(j.daily&&j.daily.time)?j.daily.time.indexOf(fecha):-1;
    var res= ix>=0
-     ? {day:wxToday(),state:"ok",code:j.daily.weathercode[ix],tmax:Math.round(j.daily.temperature_2m_max[ix]),tmin:Math.round(j.daily.temperature_2m_min[ix])}
+     ? {day:wxToday(),state:"ok",code:j.daily.weathercode[ix],
+        tmax:Math.round(j.daily.temperature_2m_max[ix]),tmin:Math.round(j.daily.temperature_2m_min[ix]),
+        stmax:Math.round(j.daily.apparent_temperature_max[ix]),stmin:Math.round(j.daily.apparent_temperature_min[ix]),
+        hmax:Math.round(j.daily.relative_humidity_2m_max[ix]),hmin:Math.round(j.daily.relative_humidity_2m_min[ix])}
      : {day:wxToday(),state:"nodata"};
    save("wx_"+id,res); delete WXFETCHING[id]; route();
  }).catch(function(){ save("wx_"+id,{day:wxToday(),state:"error"}); delete WXFETCHING[id]; route(); });
@@ -1052,7 +1055,9 @@ function vDia(id){
   var wxC=WXCOORDS[d.id], wx=getWeather(d);
   if(wx){
     out+='<div class="card"><div class="sec-title" style="margin-top:0">Previsión · '+esc(wxC.nom)+'</div>';
-    if(wx.state==="ok")out+='<div class="kv"><span class="ic">'+wxEmoji(wx.code)+'</span><span class="tx">'+wxLabel(wx.code)+' · máx '+wx.tmax+'°C / mín '+wx.tmin+'°C</span></div>';
+    if(wx.state==="ok")out+='<div class="kv"><span class="ic">'+wxEmoji(wx.code)+'</span><span class="tx">'+wxLabel(wx.code)+' · máx '+wx.tmax+'°C / mín '+wx.tmin+'°C</span></div>'
+      +'<div class="kv"><span class="ic">🌡️</span><span class="tx">Sensación: máx '+wx.stmax+'°C / mín '+wx.stmin+'°C</span></div>'
+      +'<div class="kv"><span class="ic">💧</span><span class="tx">Humedad: '+wx.hmin+'–'+wx.hmax+'%</span></div>';
     else if(wx.state==="nodata")out+='<div class="note" style="margin-top:0">Aún no disponible: la previsión se publica unos 16 días antes de la fecha.</div>';
     else if(wx.state==="error")out+='<div class="note" style="margin-top:0">No se ha podido cargar la previsión ahora mismo.</div>';
     else out+='<div class="note" style="margin-top:0">Cargando previsión…</div>';
