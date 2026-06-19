@@ -541,6 +541,7 @@ var WXCOORDS = {
  regreso:{lat:35.6762,lon:139.6503,nom:"Tokio"}
 };
 var WXFETCHING={};
+var WXVER=2; // sube este número si cambian los campos guardados en caché
 function wxToday(){return new Date().toISOString().slice(0,10);}
 function wxEmoji(c){
  if(c===0)return"☀️"; if(c===1||c===2)return"🌤️"; if(c===3)return"☁️";
@@ -568,18 +569,18 @@ function fetchWeather(id,c,fecha){
  fetch(url).then(function(r){return r.json();}).then(function(j){
    var ix=(j.daily&&j.daily.time)?j.daily.time.indexOf(fecha):-1;
    var res= ix>=0
-     ? {day:wxToday(),state:"ok",code:j.daily.weathercode[ix],
+     ? {day:wxToday(),v:WXVER,state:"ok",code:j.daily.weathercode[ix],
         tmax:Math.round(j.daily.temperature_2m_max[ix]),tmin:Math.round(j.daily.temperature_2m_min[ix]),
         stmax:Math.round(j.daily.apparent_temperature_max[ix]),stmin:Math.round(j.daily.apparent_temperature_min[ix]),
         hmax:Math.round(j.daily.relative_humidity_2m_max[ix]),hmin:Math.round(j.daily.relative_humidity_2m_min[ix])}
-     : {day:wxToday(),state:"nodata"};
+     : {day:wxToday(),v:WXVER,state:"nodata"};
    save("wx_"+id,res); delete WXFETCHING[id]; route();
- }).catch(function(){ save("wx_"+id,{day:wxToday(),state:"error"}); delete WXFETCHING[id]; route(); });
+ }).catch(function(){ save("wx_"+id,{day:wxToday(),v:WXVER,state:"error"}); delete WXFETCHING[id]; route(); });
 }
 function getWeather(d){
  var c=WXCOORDS[d.id]; if(!c)return null;
  var cached=store("wx_"+d.id,null);
- if(cached&&cached.day===wxToday())return cached;
+ if(cached&&cached.day===wxToday()&&cached.v===WXVER)return cached;
  fetchWeather(d.id,c,d.fecha);
  return(cached&&cached.state==="ok")?cached:{state:"loading"};
 }
